@@ -52,13 +52,14 @@
 
   ```
   Emails:
-  brahm@brahmvanhouzen.studio
-  thomas.newnum@gmail.com
+  Brahm - brahm@brahmvanhouzen.studio
+  Tommy - thomas.newnum@gmail.com
+  Nicholas - nwherman1724@gmail.com
   ```
   ```
   GitHub: 
-  nwherman1724 - https://github.com/nwherman1724
-  tnewnum - https://github.com/tnewnum
-  brahmvanh - https://github.com/brahmvanh
+  Brahm - https://github.com/brahmvanh
+  Tommy - https://github.com/tnewnum
+  Nicholas - https://github.com/nwherman1724
   ```
 
