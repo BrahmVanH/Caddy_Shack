@@ -31,7 +31,18 @@ const userSchema = new Schema(
 			type: String,
 			maxlength: 500,
 		},
-		saidYesTo: [userSchema],
+		saidYesTo: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'User',
+			},
+		],
+		messages: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'Message',
+			},
+		],
 	},
 	{
 		toJSON: {
@@ -39,3 +50,11 @@ const userSchema = new Schema(
 		},
 	}
 );
+
+userSchema.virtual('matchCount').get(() => {
+	return this.saidYesTo.length;
+});
+
+const User = model('User', userSchema);
+
+module.exports = User;

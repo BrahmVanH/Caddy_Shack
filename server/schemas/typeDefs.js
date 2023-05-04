@@ -11,6 +11,7 @@ const typeDefs = gql`
 		genderInterest: String!
 		bio: String!
 		saidYesTo: [User]
+    messages: [Message]
 	}
 
 	input UserInput {
@@ -23,6 +24,15 @@ const typeDefs = gql`
 		genderInterest: String!
 		bio: String!
 	}
+
+  type Message {
+    _id: ID!
+    messageSender: String!
+    messageRecipient: String!
+    messageBody: String!
+    createdAt: String!
+
+  }
 
 
 `;
