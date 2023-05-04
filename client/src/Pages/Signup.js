@@ -1,7 +1,11 @@
 function Signup() {
     return (
       <div>
+        Nav
         Signup Page
+        
+
+
       </div>
     );
   }
