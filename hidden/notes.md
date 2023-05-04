@@ -7,7 +7,6 @@ user
   gender of interest
   bio
   [saidYesTo]
-  [saidYesToUser]
 
 message
   messageSender
@@ -15,5 +14,5 @@ message
   messageBody
   dateCreated
 
-  
+
   
