@@ -40,8 +40,10 @@ const typeDefs = gql`
   #   allFemaleUsers
 	type Query {
 		# user(username: String!): User
-		allUsers: [User]
-		
+		allUsers: [User],
+		allMen: [User]!,
+		allWomen: [User]!
+
 	}
 #  Mutations
 #     addLikedUser

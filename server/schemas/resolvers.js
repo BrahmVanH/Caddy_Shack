@@ -11,6 +11,20 @@ const resolvers = {
       }
 
       return allUsers;
+    },
+    allMen: async () => {
+      const users = await User.find({ gender: 'male' });
+      if (!users) {
+        throw new Error('Something went wrong');
+      }
+      return users;
+    },
+    allWomen: async () => {
+      const users = await User.find({ gender: 'female' });
+      if (!users) {
+        throw new Error('Something went wrong');
+      }
+      return users;
     }
   }
 }
