@@ -15,4 +15,17 @@ message
   dateCreated
 
 
+  Queries
+    allUsers
+    allSaidYesTo
+    allMaleUsers
+    allFemaleUsers
+    
+    
+  Mutations
+    addLikedUser
+    RemoveLikedUser
+
+
+
   
