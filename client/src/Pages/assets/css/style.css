@@ -1,0 +1,62 @@
+body {
+  background-image: url(../img/test.jpg);
+  background-attachment: fixed;
+  font-family: sans-serif;
+  background-size: cover;
+}
+
+@media (max-width: 768px) { /* adjust the size for screens wider than 768px */
+    body {
+      background-size: contain;
+      background-position: center;
+      background-repeat: repeat;
+    }
+  }
+
+  @media (min-width: 768px) {
+    body {
+      background-repeat: repeat;
+      background-size: contain;
+    }
+  }
+
+#footer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  margin-top: 50px;
+  position: sticky;
+  padding: 0;
+  color: black;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 4rem;
+  background-color: grey;
+  z-index: -1;
+
+  
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+}
+
+.slogan {
+    padding: 1em;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+.navbar {
+  background: #32cd32;
+  padding-top: 25px;
+}
+.navbar-toggler-icon {
+  background-color: #000;
+}
