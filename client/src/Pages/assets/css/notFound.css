@@ -31,6 +31,9 @@
 
 .notFound {
   display: flex;
+  font-weight: 900;
+  font-size: x-large;
+  color: white;
 }
 
 #logo {
@@ -42,7 +45,3 @@
   padding-top: 10px;
 }
 
-
-.body {
-  background: whitesmoke;
-}

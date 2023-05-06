@@ -1,12 +1,10 @@
 function Signup() {
     return (
       <div>
-        Nav
-        Signup Page
-        
-
-
-      </div>
+      <h1>Sign Up</h1>
+      <p>Please fill out the form below</p>
+      
+    </div>
     );
   }
   
