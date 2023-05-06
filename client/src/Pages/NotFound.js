@@ -1,4 +1,4 @@
-import "./assets/css/404.css";
+import "./assets/css/notFound.css";
 import pageNotFound from "./assets/img/pagenotfound.jpg";
 import logo from "./assets/img/logo.png";
 import "bootstrap/dist/css/bootstrap.min.css";
