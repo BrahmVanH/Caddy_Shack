@@ -1,15 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/style.css'
-import backgroundImage from './assets/img/logo.png'
+import logo from './assets/img/logo.png'
 
 
 function Home() {
     return (
       <>
-      <nav className="navbar navbar-dark navbar-expand-md">
+      <nav className="homeNav navbar navbar-expand-md" >
         <div className="container">
         <a className="navbar-brand d-flex align-items-center" href="/">
-          <img src={backgroundImage} alt="" width="75px" />
+          <img src={logo} alt="" width="75px" />
         </a>
           <button
             data-bs-toggle="collapse"
@@ -26,7 +26,7 @@ function Home() {
             <ul className="navbar-nav ms-auto">
               <li className="nav-item"></li>
             </ul>
-            <a className="btn ms-md-2" role="button" href="/login">
+            <a className="loginBtn btn ms-md-2" role="button" href="/Signup">
               Login/Sign Up
             </a>
           </div>
