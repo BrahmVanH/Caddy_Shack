@@ -1,7 +1,7 @@
-import './assets/css/404.css'
-import pageNotFound from './assets/img/pagenotfound.jpg'
-import logo from './assets/img/logo.png'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "./assets/css/404.css";
+import pageNotFound from "./assets/img/pagenotfound.jpg";
+import logo from "./assets/img/logo.png";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function NotFound() {
   return (
@@ -15,18 +15,16 @@ function NotFound() {
       </nav>
 
       <div className="body">
-      <div className="lostPara">
-        <p className="notFound">
-          "Oops! Looks like this page has gone out of bounds."
-        </p>
-      </div>
+        <div className="lostPara">
+          <p className="notFound">
+            "Oops! Looks like this page has gone out of bounds."
+          </p>
+        </div>
 
-      <div id="lostdiv">
-        <img id="lost" src={pageNotFound} alt="pagenotfound" />
+        <div id="lostdiv">
+          <img id="lost" src={pageNotFound} alt="pagenotfound" />
+        </div>
       </div>
-
-      </div>
-
 
       <footer id="lostFooter" className="text-center">
         <p className="slogan">

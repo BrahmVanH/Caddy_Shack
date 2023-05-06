@@ -1,4 +1,3 @@
-html,
 body {
   background-image: url(../img/test.jpg);
   background-attachment: fixed;
@@ -49,10 +48,7 @@ body {
   color: white;
 }
 
-body,
-html {
-  height: 100%;
-}
+
 
 .homeNav {
   padding-top: 25px;
