@@ -7,6 +7,8 @@ import Message from './Pages/Message';
 import NotFound from './Pages/NotFound';
 import Profile from './Pages/Profile';
 import Signup from './Pages/Signup';
+import Register from "./Pages/Register";
+
 import './App.css';
 
 const client = new ApolloClient({
@@ -18,7 +20,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-center align-center min-100-vh bg-primary">
+        <div className="flex-column justify-center align-center min-100-vh">
           <Routes>
             <Route 
               path="/" 
@@ -39,6 +41,10 @@ function App() {
             <Route 
               path="/signup" 
               element={<Signup />}
+            />
+             <Route 
+              path="/register" 
+              element={<Register />}
             />
             <Route 
               path="*"
