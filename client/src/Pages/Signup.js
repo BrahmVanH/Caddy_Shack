@@ -8,7 +8,7 @@ function Signup() {
     <div>
       <nav className="lostNavbar navbar-expand-md">
         <div className="container">
-          <a className="navbar-brand d-flex align-items-center" href="/">
+          <a href="/">
             <img id="logo" src={logo} width="75px" alt="logo" />
           </a>
         </div>
@@ -57,10 +57,10 @@ function Signup() {
                     </div>
                     <div className="mb-3">
                       <button
-                        className="btn btn-primary d-block w-100"
+                        className="btn d-block w-100"
                         type="submit"
                       >
-                        <Link className="myBtn" to="/Profile">Login</Link>
+                        <Link to="/Profile">Login</Link>
                       </button>
                     </div>
                     <p className="text-muted">Forgot your password?</p>
@@ -112,10 +112,11 @@ function Signup() {
                     </div>
                     <div className="mb-3">
                       <button
-                        className="btn btn-primary d-block w-100"
+                        className="btn  d-block w-100 myBtn"
                         type="submit"
+                        
                       >
-                        <Link className="myBtn" to="/register">
+                        <Link to="/register">
                           Signup
                         </Link>
                       </button>
