@@ -7,7 +7,8 @@ import Message from './Pages/Message';
 import NotFound from './Pages/NotFound';
 import Profile from './Pages/Profile';
 import Signup from './Pages/Signup';
-import Register from './Pages/Register';
+import Register from "./Pages/Register";
+
 import './App.css';
 
 const client = new ApolloClient({
