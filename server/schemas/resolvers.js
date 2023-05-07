@@ -51,7 +51,7 @@ const resolvers = {
 		addLikedUser: async (parent, { userId, likedUserId }) => {
 			const user = await User.findOneAndUpdate(
 				{ _id: userId },
-				{ $addToSet: { saidYesTo: likedUserId } },
+				{ $addToSet: { likedUsers: likedUserId } },
 				{
 					new: true,
 					runValidators: true,
@@ -67,7 +67,7 @@ const resolvers = {
 		removeLikedUser: async (parent, { userId, likedUserId }) => {
 			const user = await User.findOneAndUpdate(
 				{ _id: userId },
-				{ $pull: { saidYesTo: likedUserId } }
+				{ $pull: { likedUsers: likedUserId } }
 			);
 			return user;
 		},

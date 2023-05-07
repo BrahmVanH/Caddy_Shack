@@ -31,7 +31,7 @@ const userSchema = new Schema(
 			type: String,
 			maxlength: 500,
 		},
-		saidYesTo: [
+		likedUsers: [
 			{
 				type: Schema.Types.ObjectId,
 				ref: 'User',

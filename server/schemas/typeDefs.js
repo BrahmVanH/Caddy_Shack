@@ -10,7 +10,7 @@ const typeDefs = gql`
 		gender: String!
 		genderInterest: String!
 		bio: String!
-		saidYesTo: [User]
+		likedUsers: [User]
 		messages: [Message]
 	}
 
