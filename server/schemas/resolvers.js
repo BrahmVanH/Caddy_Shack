@@ -27,6 +27,51 @@ const resolvers = {
 			return users;
 		},
 	},
+	Mutation: {
+		createUser: async (parent, { username, email, password }) => {
+			const newUser = await User.create({ username, email, password });
+
+			return newUser;
+		},
+		loginUser: async (parent, { email, password }) => {
+			const user = await User.findOne({ email });
+
+			if (!user) {
+				throw new AuthenticationError('No user found with that email!');
+			}
+
+			const correctPassword = await user.isCorrectPassword(password);
+
+			if (!correctPassword) {
+				throw new AuthenticationError('Incorrect password!');
+			}
+			return user;
+		},
+
+		addLikedUser: async (parent, { userId, likedUserId }) => {
+			const user = await User.findOneAndUpdate(
+				{ _id: userId },
+				{ $addToSet: { saidYesTo: likedUserId } },
+				{
+					new: true,
+					runValidators: true,
+				}
+			);
+			if (!userId) {
+				throw new Error('something went wrong, please try again.');
+			}
+
+			return user;
+		},
+
+		removeLikedUser: async (parent, { userId, likedUserId }) => {
+			const user = await User.findOneAndUpdate(
+				{ _id: userId },
+				{ $pull: { saidYesTo: likedUserId } }
+			);
+			return user;
+		},
+	},
 };
 
 module.exports = resolvers;
