@@ -1,6 +1,6 @@
 # Caddy Shack
 
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]
+  ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
   
   ## Description 
@@ -48,9 +48,18 @@
 
   ## Questions
 
-  If you have any questions about the project you can reach out to me via email or GitHub with the information below. 
+  If you have any questions about the project you can reach out to any of us via email or GitHub with the information below. 
 
-  >Email: brahm@brahmvanhouzen.studio
-
-  >GitHub: [nwherman1724, tnewnum, brahmvanh](https://github.com/nwherman1724, tnewnum, brahmvanh)
+  ```
+  Emails:
+  Brahm - brahm@brahmvanhouzen.studio
+  Tommy - thomas.newnum@gmail.com
+  Nicholas - nwherman1724@gmail.com
+  ```
+  ```
+  GitHub: 
+  Brahm - https://github.com/brahmvanh
+  Tommy - https://github.com/tnewnum
+  Nicholas - https://github.com/nwherman1724
+  ```
 
