@@ -11,8 +11,8 @@ function Message() {
           </a>
         </div>
       </nav>
-      <div class="chatbox">
-        <div class="chats"></div>
+      <div className="chatbox">
+        <div className="chats"></div>
       </div>
 
       
