@@ -14,7 +14,9 @@ function Message() {
       <div class="chatbox">
         <div class="chats"></div>
       </div>
-      <div className="container">
+
+      
+      <div className="myContainer">
         <div className="input-group mb-3 textArea">
           <input
             type="text"

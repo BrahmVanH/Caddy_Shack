@@ -13,13 +13,17 @@
 .myBtn {
     color: white;
 }
-.container {
+.myContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 50px;
+    
     
   }
   
+
+
   .text-input {
     width: 100%;
   }
