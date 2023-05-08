@@ -33,24 +33,20 @@ const typeDefs = gql`
 		createdAt: String!
 	}
 
-	#  Queries
-  #   allUsers
-  #   allSaidYesTo
-  #   allMaleUsers
-  #   allFemaleUsers
 	type Query {
 		# user(username: String!): User
-		allUsers: [User],
-		allMen: [User]!,
+		# allFemaleUsers
+		allUsers: [User]
+		allMen: [User]!
 		allWomen: [User]!
-
 	}
-#  Mutations
-#     addLikedUser
-#     RemoveLikedUser
-	# type Mutation {
-	# 	createUser()
-	# }
+
+	type Mutation {
+		addLikedUser(userId: ID!, likedUserId: ID!): User
+		removeLikedUser(UserId: ID!, likedUserId: ID!): User
+		createUser(username: String!, email: String!, password: String!): User
+		loginUser(username: String!, password: String!): User
+	}
 `;
 
 // To-do: Add queries, add mutation
