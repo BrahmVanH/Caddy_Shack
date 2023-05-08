@@ -1,3 +1,4 @@
+import logo from "./assets/img/logo.png"
 function Message() {
     return (
       <div>
