@@ -1,6 +1,7 @@
 .chatbox {
   border: solid;
-  margin: 20px;
+  margin: 40px;
+  padding: 20px;
   border-radius: 25px;
   background: lightblue;
 }
