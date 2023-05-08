@@ -47,6 +47,21 @@ const resolvers = {
 			}
 			return user;
 		},
+		deleteUser: async (parent, { userId, password }) => {
+			const user = await User.findOne({ userId });
+
+			if (!user) {
+				throw new AuthenticationError('No user with that ID.');
+			}
+
+			const correctPassword = await user.isCorrectPassword(passowrd);
+
+			if (!correctPassword) {
+				throw new AuthenticationError('Incorrect password.');
+			}
+
+			return user;
+		},
 
 		addLikedUser: async (parent, { userId, likedUserId }) => {
 			const user = await User.findOneAndUpdate(
@@ -58,7 +73,9 @@ const resolvers = {
 				}
 			);
 			if (!userId) {
-				throw new Error('something went wrong, please try again.');
+				throw new Error(
+					'Could not retrieve user-data, please refresh and try again.'
+				);
 			}
 
 			return user;
