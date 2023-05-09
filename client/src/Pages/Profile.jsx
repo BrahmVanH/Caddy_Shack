@@ -1,5 +1,6 @@
 import gopher from "./assets/img/gopher.png";
 import "./assets/css/profile.css";
+import { Link } from "react-router-dom";
 
 function Profile() {
   return (
@@ -22,25 +23,17 @@ function Profile() {
           <li className="list-group-item">Gender Interested In</li>
         </ul>
         <div className="cardBody">
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => {
-              window.location.href = "/matching";
-            }}
-          >
-            Find A Partner
-          </button>
+        <div className="text-center">
+            <Link to="/signup" className="btn btn-primary">
+              Find a Partner
+            </Link>
+          </div>
 
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => {
-              window.location.href = "/matches";
-            }}
-          >
-            Current Matches
-          </button>
+          <div className="text-center">
+            <Link to="/signup" className="btn btn-primary">
+              Find a Partner
+            </Link>
+          </div>
         </div>
       </div>
     </div>
