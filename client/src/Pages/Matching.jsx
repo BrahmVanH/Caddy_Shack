@@ -1,4 +1,4 @@
-import PotentialMatch from "./components/Matching/potentialMatch.jsx";
+import PotentialMatch from "./components/Matching/PotentialMatch.jsx";
 
 function Matching() {
   return (
