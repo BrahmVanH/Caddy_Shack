@@ -1,5 +1,5 @@
 import gopher from "./assets/img/gopher.png";
-import "./assets/css/match.css";
+import "./assets/css/matching.css";
 
 function Matching() {
   return (
@@ -10,10 +10,10 @@ function Matching() {
           <div className="card-body">
             <h5 className="card-title">User Name</h5>
             <p className="card-text">User's Bio</p>
-            <a href="/message" className="btn btn-primary">
+            <a href="/" className="btn btn-success myBtn">
               YES
             </a>
-            <a href="/message" className="btn btn-primary">
+            <a href="/" className="btn btn-danger myBtn">
               No
             </a>
           </div>
