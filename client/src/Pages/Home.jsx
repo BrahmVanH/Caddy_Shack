@@ -1,20 +1,25 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/home.css";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <>
-    <section className="homeContainer">
-
-     <p className="home">
-      Caddy Shack is a dating app specifically designed for golf enthusiasts
-      looking for love. Whether you are a seasoned pro or a beginner, Caddy
-      Shack is the perfect place to find a partner who shares your passion for
-      golf.
-    </p> 
-    </section>
-  </>
-
+    <div className="homeContainer">
+      <div>
+        <div>
+          <p className="text-center">
+            Whether you are a Seasoned Professional or a Beginner<br></br>Caddy
+            Shack is the perfect place to find a partner who shares your passion
+            for golf!
+          </p>
+          <div className="text-center">
+            <Link to="/signup" className="btn btn-primary">
+              Find a Partner
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
