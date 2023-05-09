@@ -21,6 +21,27 @@ function Profile() {
           <li className="list-group-item">Gender</li>
           <li className="list-group-item">Gender Interested In</li>
         </ul>
+        <div className="cardBody">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              window.location.href = "/matching";
+            }}
+          >
+            Find A Partner
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              window.location.href = "/matches";
+            }}
+          >
+            Current Matches
+          </button>
+        </div>
       </div>
     </div>
   );
