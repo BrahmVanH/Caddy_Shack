@@ -54,7 +54,7 @@ const resolvers = {
 				throw new AuthenticationError('No user with that ID.');
 			}
 
-			const correctPassword = await user.isCorrectPassword(passowrd);
+			const correctPassword = await user.isCorrectPassword(password);
 
 			if (!correctPassword) {
 				throw new AuthenticationError('Incorrect password.');
