@@ -16,6 +16,9 @@ function PotentialMatch () {
             <a href="/" className="btn btn-danger myBtn">
               No
             </a>
+            <a href="/" className="btn btn-secondary myBtn">
+              User's Profile
+            </a>
           </div>
         </div>
       </div>
