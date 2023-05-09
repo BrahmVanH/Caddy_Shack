@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+
+body::-webkit-scrollbar{
+  display: none;
+}
+
+body {
+  background-image: url(../src/Pages/assets/img/test.jpg);
+  background-attachment: fixed;
+  font-family: sans-serif;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  /* adjust the size for screens wider than 768px */
+  body {
+    background-size: contain;
+    background-position: center;
+    background-repeat: repeat;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    background-repeat: repeat;
+    background-size: contain;
+  }
+}
+
+
+

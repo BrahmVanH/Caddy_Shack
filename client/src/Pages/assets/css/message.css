@@ -1,0 +1,44 @@
+.chatbox {
+  border: solid;
+  margin: 40px;
+  padding: 20px;
+  border-radius: 25px;
+  background: lightblue;
+}
+
+.chats {
+  margin: 20px;
+}
+
+.myBtn {
+    color: white;
+}
+.myContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    
+    
+  }
+  
+
+
+  .text-input {
+    width: 100%;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .text-input {
+      width: 50%;
+      flex: 0 0 50%;
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+    .text-input {
+      width: 100%;
+      flex: 0 0 33.333%;
+    }
+  }
+  

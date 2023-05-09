@@ -8,6 +8,8 @@ import NotFound from './Pages/NotFound';
 import Profile from './Pages/Profile';
 import Signup from './Pages/Signup';
 import Register from "./Pages/Register";
+import Navbar from "./Pages/components/Navbar/Navbar"
+import Footer from "./Pages/components/Footer/Footer"
 
 import './App.css';
 
@@ -20,6 +22,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+          <Navbar />
         <div className="flex-column justify-center align-center min-100-vh">
           <Routes>
             <Route 
@@ -52,6 +55,7 @@ function App() {
             />
           </Routes>
         </div>
+        <Footer />
       </Router>
     </ApolloProvider>
   );

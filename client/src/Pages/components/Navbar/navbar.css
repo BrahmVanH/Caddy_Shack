@@ -1,0 +1,13 @@
+.myNavbar {
+  background: black;
+  width: 100%;
+  padding-left: 15px;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  z-index: 1;
+  color: white;
+}
+
+.loginBtn {
+  color: white;
+}
