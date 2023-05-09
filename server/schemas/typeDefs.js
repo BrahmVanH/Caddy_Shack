@@ -39,6 +39,7 @@ const typeDefs = gql`
 		allUsers: [User]
 		allMen: [User]!
 		allWomen: [User]!
+		allMatches: [User]!
 	}
 
 	type Mutation {

@@ -26,6 +26,13 @@ const resolvers = {
 			}
 			return users;
 		},
+		allMatches: async () => {
+			const matches = await User.find({ saidYesTo: {userId} });
+			if (!matches) {
+				throw new Error('Sorry! You have no matches.');
+			}
+			return matches;
+		},
 	},
 	Mutation: {
 		createUser: async (parent, { username, email, password }) => {
