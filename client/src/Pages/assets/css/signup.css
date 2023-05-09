@@ -1,32 +1,17 @@
-.signup {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-@media (max-width: 767px) {
-  .signup {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-#lostFooter {
+.myContainer {
   display: flex;
   flex-direction: column;
-  margin-bottom: 0;
-  margin-top: 50px;
-  padding: 0;
-  bottom: 0;
-  width: 100%;
-  height: 5rem;
-  background:black;
-  z-index: 1;
-  padding: 1em;
+  justify-content: center;
+  align-items: center;
+}
+.signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.lostNavbar {
-  width:100%;
-  padding-bottom: 5px;
+.noMember {
+  margin-top: 10px;
 }
-
