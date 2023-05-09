@@ -1,26 +1,11 @@
-body {
-  background-image: url(../img/test.jpg);
-  background-attachment: fixed;
-  font-family: sans-serif;
-  background-size: cover;
+.home {
+  color: black;
 }
 
-@media (max-width: 768px) {
-  /* adjust the size for screens wider than 768px */
-  body {
-    background-size: contain;
-    background-position: center;
-    background-repeat: repeat;
-  }
+.homeContainer {
+  border: solid;
+  margin: 40px;
+  padding: 20px;
+  border-radius: 25px;
+  background: lightblue;
 }
-
-@media (min-width: 768px) {
-  body {
-    background-repeat: repeat;
-    background-size: contain;
-  }
-}
-
-
-
-
