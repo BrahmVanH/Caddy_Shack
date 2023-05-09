@@ -52,7 +52,7 @@ function Signup() {
                       </button>
                       <p className="noMember">Not a Member Yet?</p>
                       <button className="btn d-block w-100" type="submit">
-                        <Link to="/Profile">Signup</Link>
+                        <Link to="/register">Signup</Link>
                       </button>
                     </div>
                   </form>
