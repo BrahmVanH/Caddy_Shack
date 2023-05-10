@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+
 import { Form, Button, Alert, Dropdown } from 'react-bootstrap';
-import logo from './assets/img/logo.png';
-import './assets/css/register.css';
+
+import './assets/css/signup.css';
+
 
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
@@ -73,8 +76,8 @@ export default function Register() {
 	};
 
 	return (
-		<div className='row register-form'>
-			<div className='col-md-8 offset-md-2'>
+		<div className='row register-form d-flex justify-content-center py-5' >
+			<div className='col-md-3 py-' style={{backgroundColor: "white", paddingTop: "2rem", borderRadius: ".375rem"}}>
 				<Form noValidate validated={validated} onSubmit={handleFormSubmit}>
 					<Alert
 						dismissible
@@ -83,8 +86,8 @@ export default function Register() {
 						variant='danger'>
 						Something went wrong with your signup!
 					</Alert>
-					<Form.Group className='row form-group'>
-						<div className='col-sm-4 label-column'>
+					<Form.Group className='row justify-content-center form-group'>
+						<div className='col-sm-8 label-column'>
 							<Form.Label htmlFor='firstName' className='col-form-label'>
 								First Name
 							</Form.Label>
@@ -102,8 +105,8 @@ export default function Register() {
 						</div>
 					</Form.Group>
 
-					<Form.Group className='row form-group'>
-						<div className='col-sm-4 label-column'>
+					<Form.Group className='row justify-content-center form-group'>
+						<div className='col-sm-8 label-column'>
 							<Form.Label htmlFor='lastName' className='col-form-label'>
 								Last Name
 							</Form.Label>
@@ -121,8 +124,8 @@ export default function Register() {
 						</div>
 					</Form.Group>
 
-					<Form.Group className='row form-group'>
-						<div className='col-sm-4 label-column'>
+					<Form.Group className='row justify-content-center form-group'>
+						<div className='col-sm-8 label-column'>
 							<Form.Label htmlFor='username' className='col-form-label'>
 								Username
 							</Form.Label>
@@ -140,8 +143,8 @@ export default function Register() {
 						</div>
 					</Form.Group>
 
-					<Form.Group className='row form-group'>
-						<div className='col-sm-4 label-column'>
+					<Form.Group className='row justify-content-center form-group'>
+						<div className='col-sm-8 label-column'>
 							<Form.Label htmlFor='password' className='col-form-label'>
 								password
 							</Form.Label>
@@ -158,8 +161,8 @@ export default function Register() {
 							</Form.Control.Feedback>
 						</div>
 					</Form.Group>
-					<Form.Group className='row form-group'>
-						<div className='col-sm-4 label-column'>
+					<Form.Group className='row justify-content-center form-group'>
+						<div className='col-sm-8 label-column'>
 							<Form.Label htmlFor='age' className='col-form-label'>
 								Age
 							</Form.Label>
@@ -177,8 +180,8 @@ export default function Register() {
 						</div>
 					</Form.Group>
 
-					<Form.Group className='row form-group'>
-						<div className='col-sm-4 label-column'>
+					<Form.Group className='row justify-content-center form-group'>
+						<div className='col-sm-8 label-column'>
 							<Form.Label htmlFor='gender' className='col-form-label'>
 								Your Gender
 							</Form.Label>
@@ -205,8 +208,8 @@ export default function Register() {
 							</Form.Control.Feedback>
 						</div>
 					</Form.Group>
-					<Form.Group className='row form-group'>
-						<div className='col-sm-4 label-column'>
+					<Form.Group className='row justify-content-center form-group'>
+						<div className='col-sm-8 label-column'>
 							<Form.Label htmlFor='genderInterest' className='col-form-label'>
 								Your Gender interest
 							</Form.Label>
@@ -233,8 +236,8 @@ export default function Register() {
 						</div>
 					</Form.Group>
 
-					<Form.Group className='row form-group'>
-						<div className='col-sm-4 label-column'>
+					<Form.Group className='row justify-content-center form-group'>
+						<div className='col-sm-8 label-column'>
 							<Form.Label htmlFor='bio' className='col-form-label'>
 								Your Bio
 							</Form.Label>
@@ -249,25 +252,28 @@ export default function Register() {
 							<Form.Control.Feedback>A bio is required!</Form.Control.Feedback>
 						</div>
 					</Form.Group>
-
-					<Button
-						disabled={
-							!(
-								userFormData.firstName &&
-								userFormData.lastName &&
-								userFormData.username &&
-								userFormData.password &&
-								userFormData.age &&
-								userFormData.gender &&
-								userFormData.genderInterest &&
-								userFormData.bio
-							)
-						}
-						className='btn btn-light'
-						type='submit'
-						variant='success'>
-						Submit
-					</Button>
+				<div className='d-flex justify-content-center form-group m-2 py-5'>
+					<Link to='/profile'>
+						<Button
+							disabled={
+								!(
+									userFormData.firstName &&
+									userFormData.lastName &&
+									userFormData.username &&
+									userFormData.password &&
+									userFormData.age &&
+									userFormData.gender &&
+									userFormData.genderInterest &&
+									userFormData.bio
+								)
+							}
+							className='btn btn-light'
+							type='submit'
+							variant='success'>
+							Submit
+						</Button>
+						</Link>
+					</div>
 				</Form>
 			</div>
 		</div>

@@ -8,3 +8,8 @@
 .noMember {
   margin-top: 10px;
 }
+
+.login-buttons {
+  background-color: grey;
+  color: black;
+}
