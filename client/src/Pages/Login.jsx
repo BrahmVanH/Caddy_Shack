@@ -8,6 +8,7 @@ import "./assets/css/login.css";
 
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 
 export default function Login() {
@@ -44,6 +45,9 @@ export default function Login() {
 				},
 			});
 			console.log(data);
+			// Logs user in and stores token
+			Auth.login(data.createUser.token);
+
 		} catch (err) {
 			console.error(err);
 			setShowAlert(true);
