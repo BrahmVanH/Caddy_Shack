@@ -25,7 +25,7 @@ function Navbar() {
             <ul className="navbar-nav ms-auto">
               <li className="nav-item"></li>
             </ul>
-            <a className="loginBtn btn ms-md-2" role="button" href="/Signup">
+            <a className="loginBtn btn ms-md-2" role="button" href="/login">
               Login/Sign Up
             </a>
           </div>

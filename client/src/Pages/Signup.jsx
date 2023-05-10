@@ -1,69 +1,284 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/css/signup.css";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Form, Button, Alert, Dropdown } from 'react-bootstrap';
+import './assets/css/signup.css';
 
-function Signup() {
-  return (
-    <div>
-      <section className="signup py-4 py-xl-5">
-        <div className="myContainer container">
-          <div className="row mb-5">
-            <div className="col-md-8 col-xl-12 text-center mx-auto">
-              <h2 style={{ color: "white" }}>Login</h2>
-            </div>
-          </div>
-          <div className="row d-flex justify-content-center">
-            <div className="col-md-6 col-xl-12">
-              <div className="card mb-5">
-                <div className="card-body d-flex flex-column align-items-center">
-                  <div className="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
-                    <svg
-                      className="bi bi-person"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="1em"
-                      height="1em"
-                      fill="currentColor"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
-                    </svg>
-                  </div>
+import { useMutation } from '@apollo/client';
+import { CREATE_USER } from '../utils/mutations';
 
-                  <form className="text-center" method="post">
-                    <div className="mb-3">
-                      <input
-                        className="form-control"
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <input
-                        className="form-control"
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <button className="btn d-block w-100" type="submit">
-                        <Link to="/Profile">Login</Link>
-                      </button>
-                      <p className="noMember">Not a Member Yet?</p>
-                      <button className="btn d-block w-100" type="submit">
-                        <Link to="/register">Signup</Link>
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+export default function Signup() {
+	const [userFormData, setUserFormData] = useState({
+		// firstName: '',
+		// lastName: '',
+		// username: '',
+		// password: '',
+		// age: '',
+		// gender: '',
+		// genderInterest: '',
+		// bio: '',
+	});
+
+	const [validated] = useState(false);
+
+	const [showAlert, setShowAlert] = useState(false);
+
+	const [createUser] = useMutation(CREATE_USER);
+
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setUserFormData({ ...userFormData, [name]: value });
+	};
+
+	const handleGenderDropdownSelect = (eventKey) => {
+		setUserFormData({ ...userFormData, gender: eventKey });
+	};
+
+	const handleGenderInterestDropdownSelect = (eventKey) => {
+		setUserFormData({ ...userFormData, genderInterest: eventKey });
+	};
+
+	const handleFormSubmit = async (event) => {
+		event.preventDefault();
+		console.log(userFormData);
+
+		const form = event.currentTarget;
+		if (form.checkValidity() === false) {
+			event.preventDefault();
+			event.stopPropagation();
+		}
+
+		try {
+			const { data } = createUser({
+				variables: {
+					...userFormData,
+				},
+			});
+		} catch (err) {
+			console.error(err);
+			setShowAlert(true);
+		}
+	};
+
+	return (
+		<div className='row register-form'>
+			<div className='col-md-8 offset-md-2'>
+				<Form
+					noValidate
+					validated={validated}
+					onSubmit={handleFormSubmit}>
+					<Alert
+						dismissible
+						onClose={() => setShowAlert(false)}
+						show={showAlert}
+						variant='danger'>
+						Something went wrong with your signup!
+					</Alert>
+					<Form.Group className='row form-group'>
+						<div className='col-sm-4 label-column'>
+							<Form.Label
+								htmlFor='firstName'
+								className='col-form-label'>
+								First Name
+							</Form.Label>
+							<Form.Control
+								type='text'
+								placeholder='first name'
+								name='firstName'
+								onChange={handleInputChange}
+								value={userFormData.firstName}
+								required
+							/>
+							<Form.Control.Feedback type='invalid'>
+								First name is required!
+							</Form.Control.Feedback>
+						</div>
+					</Form.Group>
+
+					<Form.Group className='row form-group'>
+						<div className='col-sm-4 label-column'>
+							<Form.Label
+								htmlFor='lastName'
+								className='col-form-label'>
+								Last Name
+							</Form.Label>
+							<Form.Control
+								type='text'
+								placeholder='last name'
+								name='lastName'
+								onChange={handleInputChange}
+								value={userFormData.lastName}
+								required
+							/>
+							<Form.Control.Feedback type='invalid'>
+								Last name is required!
+							</Form.Control.Feedback>
+						</div>
+					</Form.Group>
+
+					<Form.Group className='row form-group'>
+						<div className='col-sm-4 label-column'>
+							<Form.Label
+								htmlFor='username'
+								className='col-form-label'>
+								Username
+							</Form.Label>
+							<Form.Control
+								type='text'
+								placeholder='username'
+								name='username'
+								onChange={handleInputChange}
+								value={userFormData.username}
+								required
+							/>
+							<Form.Control.Feedback type='invalid'>
+								Username is required!
+							</Form.Control.Feedback>
+						</div>
+					</Form.Group>
+
+					<Form.Group className='row form-group'>
+						<div className='col-sm-4 label-column'>
+							<Form.Label
+								htmlFor='password'
+								className='col-form-label'>
+								password
+							</Form.Label>
+							<Form.Control
+								type='password'
+								placeholder='password'
+								name='password'
+								onChange={handleInputChange}
+								value={userFormData.password}
+								required
+							/>
+							<Form.Control.Feedback>
+								A password is required!
+							</Form.Control.Feedback>
+						</div>
+					</Form.Group>
+					<Form.Group className='row form-group'>
+						<div className='col-sm-4 label-column'>
+							<Form.Label
+								htmlFor='age'
+								className='col-form-label'>
+								Age
+							</Form.Label>
+							<Form.Control
+								type='text'
+								placeholder='age'
+								name='age'
+								onChange={handleInputChange}
+								value={userFormData.age}
+								required
+							/>
+							<Form.Control.Feedback>
+								Your age is required!
+							</Form.Control.Feedback>
+						</div>
+					</Form.Group>
+
+					<Form.Group className='row form-group'>
+						<div className='col-sm-4 label-column'>
+							<Form.Label
+								htmlFor='gender'
+								className='col-form-label'>
+								Your Gender
+							</Form.Label>
+							<Form.Control
+								type='hidden'
+								name='gender'
+								value={userFormData.gender}
+								required
+							/>
+
+							<Dropdown onSelect={handleGenderDropdownSelect}>
+								<Dropdown.Toggle
+									variant='success'
+									id='dropdown-basic'>
+									{userFormData.gender || 'Choose gender'}
+								</Dropdown.Toggle>
+
+								<Dropdown.Menu name='gender'>
+									<Dropdown.Item eventKey='male'>Male</Dropdown.Item>
+									<Dropdown.Item eventKey='female'>Female</Dropdown.Item>
+									<Dropdown.Item eventKey='other'>Other</Dropdown.Item>
+								</Dropdown.Menu>
+							</Dropdown>
+							<Form.Control.Feedback>
+								Your gender is required!
+							</Form.Control.Feedback>
+						</div>
+					</Form.Group>
+					<Form.Group className='row form-group'>
+						<div className='col-sm-4 label-column'>
+							<Form.Label
+								htmlFor='genderInterest'
+								className='col-form-label'>
+								Your Gender interest
+							</Form.Label>
+							<Form.Control
+								type='hidden'
+								name='genderInterest'
+								value={userFormData.genderInterest}
+								required
+							/>
+							<Dropdown onSelect={handleGenderInterestDropdownSelect}>
+								<Dropdown.Toggle
+									variant='success'
+									id='dropdown-basic'>
+									{userFormData.genderInterest || 'Choose gender interest'}
+								</Dropdown.Toggle>
+
+								<Dropdown.Menu>
+									<Dropdown.Item eventKey='male'>Male</Dropdown.Item>
+									<Dropdown.Item eventKey='female'>Female</Dropdown.Item>
+									<Dropdown.Item eventKey='other'>Other</Dropdown.Item>
+								</Dropdown.Menu>
+							</Dropdown>
+							<Form.Control.Feedback>
+								Your gender interest is required!
+							</Form.Control.Feedback>
+						</div>
+					</Form.Group>
+
+					<Form.Group className='row form-group'>
+						<div className='col-sm-4 label-column'>
+							<Form.Label
+								htmlFor='bio'
+								className='col-form-label'>
+								Your Bio
+							</Form.Label>
+							<Form.Control
+								type='textarea'
+								placeholder='Bio'
+								name='bio'
+								onChange={handleInputChange}
+								value={userFormData.bio}
+								required
+							/>
+							<Form.Control.Feedback>A bio is required!</Form.Control.Feedback>
+						</div>
+					</Form.Group>
+
+					<Button
+						disabled={
+							!(
+								userFormData.firstName &&
+								userFormData.lastName &&
+								userFormData.username &&
+								userFormData.password &&
+								userFormData.age &&
+								userFormData.gender &&
+								userFormData.genderInterest &&
+								userFormData.bio
+							)
+						}
+						className='btn btn-light'
+						type='submit'
+						variant='success'>
+						Submit
+					</Button>
+				</Form>
+			</div>
+		</div>
+	);
 }
-
-export default Signup;
