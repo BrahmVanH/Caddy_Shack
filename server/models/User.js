@@ -15,6 +15,10 @@ const userSchema = new Schema(
 			type: String,
 			required: true,
 		},
+		password: {
+			type: String,
+			required: true,
+		},
 		age: {
 			type: Number,
 			required: true,
@@ -31,7 +35,7 @@ const userSchema = new Schema(
 			type: String,
 			maxlength: 500,
 		},
-		saidYesTo: [
+		likedUsers: [
 			{
 				type: Schema.Types.ObjectId,
 				ref: 'User',
