@@ -8,6 +8,7 @@ import './assets/css/signup.css';
 
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 export default function Register() {
 	const [userFormData, setUserFormData] = useState({
@@ -69,10 +70,24 @@ export default function Register() {
 			});
 			console.log(data);
 			console.log(userFormData);
+			// Stores user token in localStorage 
+			Auth.login(data.createUser.token);
+
 		} catch (err) {
 			console.error(err);
 			setShowAlert(true);
 		}
+
+		setUserFormData({
+			firstName: '',
+			lastName: '',
+			username: '',
+			password: '',
+			age: '',
+			gender: '',
+			genderInterest: '',
+			bio: '',
+		});
 	};
 
 	return (
