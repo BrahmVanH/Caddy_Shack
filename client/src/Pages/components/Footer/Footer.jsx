@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../Footer/footer.css"
 
 
-function Navbar() {
+function Footer() {
   return (
     <div>
        <footer id="footer" className="myFooter text-center">
@@ -15,4 +15,4 @@ function Navbar() {
 }
 
 
-export default Navbar;
+export default Footer;
