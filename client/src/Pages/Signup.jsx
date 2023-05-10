@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert, Dropdown } from 'react-bootstrap';
-import logo from './assets/img/logo.png';
-import './assets/css/register.css';
+import './assets/css/signup.css';
 
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
 
-export default function Register() {
+export default function Signup() {
 	const [userFormData, setUserFormData] = useState({
 		firstName: '',
 		lastName: '',
