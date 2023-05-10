@@ -3,13 +3,14 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
 	type User {
 		_id: ID!
-		firstName: String!
-		lastName: String!
+		firstName: String
+		lastName: String
 		username: String!
-		age: Int!
-		gender: String!
-		genderInterest: String!
-		bio: String!
+		password: String!
+		age: Int
+		gender: String
+		genderInterest: String
+		bio: String
 		likedUsers: [User]
 		messages: [Message]
 	}
@@ -19,6 +20,7 @@ const typeDefs = gql`
 		firstName: String!
 		lastName: String!
 		username: String!
+		password: String!
 		age: Int!
 		gender: String!
 		genderInterest: String!
@@ -50,7 +52,7 @@ const typeDefs = gql`
 			lastName: String!
 			username: String!
 			password: String!
-			age: String!
+			age: Int!
 			gender: String!
 			genderInterest: String!
 			bio: String!
