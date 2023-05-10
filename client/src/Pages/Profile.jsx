@@ -2,8 +2,6 @@ import gopher from "./assets/img/gopher.png";
 import "./assets/css/profile.css";
 import { Link } from "react-router-dom";
 
-import { LinkContainer } from "react-router-bootstrap";
-import { Button } from "react-bootstrap";
 
 function Profile() {
   return (
@@ -19,8 +17,11 @@ function Profile() {
             efficitur sed. Vestibulum ante ipsum primis in faucibus orci luctus
             et ultrices posuere cubilia curae; Suspendisse non elit nibh.
           </p>
-          <Link to="/matching" className="btn btn-primary">
+          <Link to="/matching" className="btn btn-primary myBtn">
             Find a Partner
+          </Link>
+          <Link to="/match" className="btn btn-primary myBtn">
+            See Your Matches
           </Link>
         </div>
         <ul className="list-group list-group-flush">

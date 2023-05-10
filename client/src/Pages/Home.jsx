@@ -13,7 +13,7 @@ function Home() {
             for golf!
           </p>
           <div className="text-center">
-            <Link to="/signup" className="btn btn-primary">
+            <Link to="/login" className="btn btn-primary">
               Find a Partner
             </Link>
           </div>

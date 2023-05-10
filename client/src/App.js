@@ -6,8 +6,8 @@ import Match from './Pages/Match';
 import Message from './Pages/Message';
 import NotFound from './Pages/NotFound';
 import Profile from './Pages/Profile';
-import Signup from './Pages/Signup';
-import Register from "./Pages/Register";
+import Login from './Pages/Login';
+import Signup from "./Pages/Signup";
 import Navbar from "./Pages/components/Navbar/Navbar"
 import Footer from "./Pages/components/Footer/Footer"
 import Matching from './Pages/Matching';
@@ -24,7 +24,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
           <Navbar />
-        <div className="flex-column justify-center align-center min-100-vh">
+        <div>
           <Routes>
             <Route 
               path="/" 
@@ -43,12 +43,12 @@ function App() {
               element={<Profile />}
             />
             <Route 
-              path="/signup" 
-              element={<Signup />}
+              path="/login" 
+              element={<Login />}
             />
              <Route 
-              path="/register" 
-              element={<Register />}
+              path="/Signup" 
+              element={<Signup />}
             />
             <Route 
               path="/matching" 
