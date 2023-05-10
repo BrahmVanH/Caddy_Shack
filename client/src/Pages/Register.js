@@ -50,7 +50,7 @@ export default function Register() {
 		try {
 			const userAge = parseInt(userFormData.age, 10);
 			console.log(userAge);
-			const { data } = createUser({
+			const { data } = await createUser({
 				variables: {
 					firstName: userFormData.firstName,
 					lastName: userFormData.lastName,
