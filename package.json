@@ -19,7 +19,7 @@
   "dependencies": {
     "apollo-server-express": "^2.15.0",
     "bootstrap": "^5.2.3",
-    "dotenv": "^16.0.3",
-    "react-bootstrap": "^2.7.4"
+    "dotenv": "^16.0.3"
+    
   }
 }

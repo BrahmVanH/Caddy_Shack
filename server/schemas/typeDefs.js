@@ -10,7 +10,7 @@ const typeDefs = gql`
 		gender: String!
 		genderInterest: String!
 		bio: String!
-		saidYesTo: [User]
+		likedUsers: [User]
 		messages: [Message]
 	}
 
@@ -45,7 +45,16 @@ const typeDefs = gql`
 	type Mutation {
 		addLikedUser(userId: ID!, likedUserId: ID!): User
 		removeLikedUser(UserId: ID!, likedUserId: ID!): User
-		createUser(username: String!, email: String!, password: String!): User
+		createUser(
+			firstName: String!
+			lastName: String!
+			username: String!
+			password: String!
+			age: String!
+			gender: String!
+			genderInterest: String!
+			bio: String!
+		): User
 		loginUser(username: String!, password: String!): User
 		deleteUser(userId: ID!, password: String!): User
 	}
