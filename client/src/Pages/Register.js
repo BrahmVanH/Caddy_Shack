@@ -8,14 +8,14 @@ import { CREATE_USER } from '../utils/mutations';
 
 export default function Register() {
 	const [userFormData, setUserFormData] = useState({
-		// firstName: '',
-		// lastName: '',
-		// username: '',
-		// password: '',
-		// age: '',
-		// gender: '',
-		// genderInterest: '',
-		// bio: '',
+		firstName: '',
+		lastName: '',
+		username: '',
+		password: '',
+		age: '',
+		gender: '',
+		genderInterest: '',
+		bio: '',
 	});
 
 	const [validated] = useState(false);
@@ -48,11 +48,24 @@ export default function Register() {
 		}
 
 		try {
+			const userAge = parseInt(userFormData.age, 10);
+			console.log(userAge);
 			const { data } = createUser({
 				variables: {
-					...userFormData,
+					firstName: userFormData.firstName,
+					lastName: userFormData.lastName,
+					username: userFormData.username,
+					password: userFormData.password,
+					age: userAge,
+					gender: userFormData.gender,
+					genderInterest: userFormData.genderInterest,
+					bio: userFormData.bio,
 				},
+				
+				// ...userFormData, age: userAge,
 			});
+			console.log(data);
+			console.log(userFormData);
 		} catch (err) {
 			console.error(err);
 			setShowAlert(true);
@@ -62,10 +75,7 @@ export default function Register() {
 	return (
 		<div className='row register-form'>
 			<div className='col-md-8 offset-md-2'>
-				<Form
-					noValidate
-					validated={validated}
-					onSubmit={handleFormSubmit}>
+				<Form noValidate validated={validated} onSubmit={handleFormSubmit}>
 					<Alert
 						dismissible
 						onClose={() => setShowAlert(false)}
@@ -75,9 +85,7 @@ export default function Register() {
 					</Alert>
 					<Form.Group className='row form-group'>
 						<div className='col-sm-4 label-column'>
-							<Form.Label
-								htmlFor='firstName'
-								className='col-form-label'>
+							<Form.Label htmlFor='firstName' className='col-form-label'>
 								First Name
 							</Form.Label>
 							<Form.Control
@@ -96,9 +104,7 @@ export default function Register() {
 
 					<Form.Group className='row form-group'>
 						<div className='col-sm-4 label-column'>
-							<Form.Label
-								htmlFor='lastName'
-								className='col-form-label'>
+							<Form.Label htmlFor='lastName' className='col-form-label'>
 								Last Name
 							</Form.Label>
 							<Form.Control
@@ -117,9 +123,7 @@ export default function Register() {
 
 					<Form.Group className='row form-group'>
 						<div className='col-sm-4 label-column'>
-							<Form.Label
-								htmlFor='username'
-								className='col-form-label'>
+							<Form.Label htmlFor='username' className='col-form-label'>
 								Username
 							</Form.Label>
 							<Form.Control
@@ -138,9 +142,7 @@ export default function Register() {
 
 					<Form.Group className='row form-group'>
 						<div className='col-sm-4 label-column'>
-							<Form.Label
-								htmlFor='password'
-								className='col-form-label'>
+							<Form.Label htmlFor='password' className='col-form-label'>
 								password
 							</Form.Label>
 							<Form.Control
@@ -158,9 +160,7 @@ export default function Register() {
 					</Form.Group>
 					<Form.Group className='row form-group'>
 						<div className='col-sm-4 label-column'>
-							<Form.Label
-								htmlFor='age'
-								className='col-form-label'>
+							<Form.Label htmlFor='age' className='col-form-label'>
 								Age
 							</Form.Label>
 							<Form.Control
@@ -179,9 +179,7 @@ export default function Register() {
 
 					<Form.Group className='row form-group'>
 						<div className='col-sm-4 label-column'>
-							<Form.Label
-								htmlFor='gender'
-								className='col-form-label'>
+							<Form.Label htmlFor='gender' className='col-form-label'>
 								Your Gender
 							</Form.Label>
 							<Form.Control
@@ -192,9 +190,7 @@ export default function Register() {
 							/>
 
 							<Dropdown onSelect={handleGenderDropdownSelect}>
-								<Dropdown.Toggle
-									variant='success'
-									id='dropdown-basic'>
+								<Dropdown.Toggle variant='success' id='dropdown-basic'>
 									{userFormData.gender || 'Choose gender'}
 								</Dropdown.Toggle>
 
@@ -211,9 +207,7 @@ export default function Register() {
 					</Form.Group>
 					<Form.Group className='row form-group'>
 						<div className='col-sm-4 label-column'>
-							<Form.Label
-								htmlFor='genderInterest'
-								className='col-form-label'>
+							<Form.Label htmlFor='genderInterest' className='col-form-label'>
 								Your Gender interest
 							</Form.Label>
 							<Form.Control
@@ -223,9 +217,7 @@ export default function Register() {
 								required
 							/>
 							<Dropdown onSelect={handleGenderInterestDropdownSelect}>
-								<Dropdown.Toggle
-									variant='success'
-									id='dropdown-basic'>
+								<Dropdown.Toggle variant='success' id='dropdown-basic'>
 									{userFormData.genderInterest || 'Choose gender interest'}
 								</Dropdown.Toggle>
 
@@ -243,9 +235,7 @@ export default function Register() {
 
 					<Form.Group className='row form-group'>
 						<div className='col-sm-4 label-column'>
-							<Form.Label
-								htmlFor='bio'
-								className='col-form-label'>
+							<Form.Label htmlFor='bio' className='col-form-label'>
 								Your Bio
 							</Form.Label>
 							<Form.Control

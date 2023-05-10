@@ -45,7 +45,7 @@ const resolvers = {
 				age,
 				gender,
 				genderInterest,
-				bio,
+				bio
 			}
 		) => {
 			const newUser = await User.create({
@@ -56,7 +56,7 @@ const resolvers = {
 				age,
 				gender,
 				genderInterest,
-				bio,
+				bio
 			});
 
 			return newUser;
