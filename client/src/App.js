@@ -10,6 +10,7 @@ import Signup from './Pages/Signup';
 import Register from "./Pages/Register";
 import Navbar from "./Pages/components/Navbar/Navbar"
 import Footer from "./Pages/components/Footer/Footer"
+import Matching from './Pages/Matching';
 
 import './App.css';
 
@@ -48,6 +49,10 @@ function App() {
              <Route 
               path="/register" 
               element={<Register />}
+            />
+            <Route 
+              path="/matching" 
+              element={<Matching />}
             />
             <Route 
               path="*"
