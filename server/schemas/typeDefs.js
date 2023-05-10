@@ -35,6 +35,11 @@ const typeDefs = gql`
 		createdAt: String!
 	}
 
+	type Auth {
+		token: ID!
+		user: User
+	}
+
 	type Query {
 		# user(username: String!): User
 		# allFemaleUsers
@@ -56,9 +61,9 @@ const typeDefs = gql`
 			gender: String!
 			genderInterest: String!
 			bio: String!
-		): User
-		loginUser(username: String!, password: String!): User
-		deleteUser(userId: ID!, password: String!): User
+		): Auth
+		loginUser(username: String!, password: String!): Auth
+		deleteUser(userId: ID!, password: String!): Auth
 	}
 `;
 
