@@ -1,22 +1,65 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_TECH = gql`
-  query tech {
-    tech {
+export const ALL_USERS = gql`
+  query allUsers {
+  allUsers {
+    firstName
+    lastName
+    age
+    gender
+    bio
+    genderInterest
+    messages {
       _id
-      name
+      createdAt
+      messageBody
+      messageRecipient
+      messageSender
     }
+    
   }
+  
+}
 `;
 
-export const QUERY_MATCHUPS = gql`
-  query matchups($_id: String) {
-    matchups(_id: $_id) {
+export const ALL_MEN = gql`
+  query allMen {
+  allMen {
+    _id
+    age
+    bio
+    firstName
+    gender
+    genderInterest
+    lastName
+    messages {
       _id
-      tech1
-      tech2
-      tech1_votes
-      tech2_votes
+      createdAt
+      messageBody
+      messageRecipient
+      messageSender
     }
   }
+}
+`;
+
+export const ALL_WOMEN = gql`
+  query allWomen {
+  allWomen {
+    _id
+    age
+    bio
+    firstName
+    gender
+    genderInterest
+    lastName
+    messages {
+      _id
+      createdAt
+      messageBody
+      messageRecipient
+      messageSender
+    }
+  }
+}
 `;

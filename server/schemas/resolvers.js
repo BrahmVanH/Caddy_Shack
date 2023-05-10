@@ -26,10 +26,38 @@ const resolvers = {
 			}
 			return users;
 		},
+		allMatches: async () => {
+			const matches = await User.find({ saidYesTo: { $ne: [] } });
+			if (!matches) {
+				throw new Error('Sorry! You have no matches.');
+			}
+			return matches;
+		},
 	},
 	Mutation: {
-		createUser: async (parent, { username, email, password }) => {
-			const newUser = await User.create({ username, email, password });
+		createUser: async (
+			parent,
+			{
+				firstName,
+				lastName,
+				username,
+				password,
+				age,
+				gender,
+				genderInterest,
+				bio,
+			}
+		) => {
+			const newUser = await User.create({
+				firstName,
+				lastName,
+				username,
+				password,
+				age,
+				gender,
+				genderInterest,
+				bio,
+			});
 
 			return newUser;
 		},
@@ -66,7 +94,7 @@ const resolvers = {
 		addLikedUser: async (parent, { userId, likedUserId }) => {
 			const user = await User.findOneAndUpdate(
 				{ _id: userId },
-				{ $addToSet: { saidYesTo: likedUserId } },
+				{ $addToSet: { likedUsers: likedUserId } },
 				{
 					new: true,
 					runValidators: true,
@@ -84,7 +112,7 @@ const resolvers = {
 		removeLikedUser: async (parent, { userId, likedUserId }) => {
 			const user = await User.findOneAndUpdate(
 				{ _id: userId },
-				{ $pull: { saidYesTo: likedUserId } }
+				{ $pull: { likedUsers: likedUserId } }
 			);
 			return user;
 		},
