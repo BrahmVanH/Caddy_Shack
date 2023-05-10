@@ -26,10 +26,10 @@ function Match() {
   
 
   return (
-    <div>
+    <div className="matchCards">
       {data.allMatches.map((match) => (
         <div key={match.username} className="myCard">
-          <div className="card" style={{width:"18:rem"}}>
+          <div className="card" style={{width:"25rem"}}>
             <img src={gopher} className="card-img-top" alt="placeholder" />
             <div className="card-body">
               <h5 className="card-title">{match.username}</h5>

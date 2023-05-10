@@ -1,5 +1,12 @@
 .myCard {
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.matchCards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
