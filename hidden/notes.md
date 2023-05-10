@@ -28,4 +28,11 @@ message
 
 
 
-  
+  firstName: userFormData.firstName,
+				lastName: userFormData.lastName,
+				username: userFormData.username,
+				password: userFormData.password,
+				age: userAge,
+				gender: userFormData.gender,
+				genderInterest: userFormData.genderInterest,
+				bio: userFormData.bio,
