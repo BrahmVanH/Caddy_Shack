@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+
 import { Form, Button, Alert, Dropdown } from 'react-bootstrap';
-import logo from './assets/img/logo.png';
-import './assets/css/register.css';
+
+import './assets/css/signup.css';
 
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
@@ -250,6 +252,8 @@ export default function Register() {
 						</div>
 					</Form.Group>
 
+				<Link to='/profile'>
+
 					<Button
 						disabled={
 							!(
@@ -268,6 +272,7 @@ export default function Register() {
 						variant='success'>
 						Submit
 					</Button>
+          </Link>
 				</Form>
 			</div>
 		</div>
