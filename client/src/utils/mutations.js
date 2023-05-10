@@ -6,10 +6,10 @@ export const CREATE_USER = gql`
 		$lastName: String!
 		$username: String!
 		$password: String!
-		$age: Number!
+		$age: Int!
 		$gender: String!
 		$genderInterest: String!
-		$bio: String
+		$bio: String!
 	) {
 		createUser(
 			firstName: $firstName
