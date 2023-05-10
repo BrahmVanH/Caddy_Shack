@@ -37,17 +37,19 @@
   }
 }
 
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
   display: none;
 }
 
-body {
-  background-image: url(../src/Pages/assets/img/test.jpg);
-  background-attachment: fixed;
-  font-family: sans-serif;
+html { 
+  background: url(../src/Pages/assets/img/test.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  height: 100vh;
 }
+
+
 
 @media (max-width: 768px) {
   /* adjust the size for screens wider than 768px */
@@ -64,6 +66,3 @@ body {
     background-size: contain;
   }
 }
-
-
-
