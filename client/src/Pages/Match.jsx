@@ -34,7 +34,7 @@ function Match() {
             <div className="card-body">
               <h5 className="card-title">{match.username}</h5>
               <p className="card-text">{match.bio}</p>
-              <a href="/message:id" className="btn btn-primary">
+              <a href="/message" className="btn btn-primary">
                 Message User
               </a>
             </div>

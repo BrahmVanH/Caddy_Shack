@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Profile() {
   return (
     <div>
-      <div className="card">
+      <div className="card profileCard">
         <img src={gopher} className="card-img-top" alt="placeholder" />
         <div className="card-body">
           <h5 className="card-title">User Name</h5>
