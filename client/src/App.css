@@ -42,7 +42,7 @@ body::-webkit-scrollbar {
 }
 
 html { 
-  background: url(../src/Pages/assets/img/test.jpg) no-repeat center center fixed; 
+  background: url(../src/Pages/assets/img/simplebackground.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
