@@ -29,8 +29,15 @@ const typeDefs = gql`
 
 	type Message {
 		_id: ID!
-		messageSender: String!
-		messageRecipient: String!
+		messageSenderId: ID!
+		messageRecipientId: ID!
+		messageBody: String!
+		createdAt: String!
+	}
+
+	input MessageInput {
+		messageSenderId: ID!
+		messageRecipientId: ID!
 		messageBody: String!
 		createdAt: String!
 	}
@@ -43,6 +50,8 @@ const typeDefs = gql`
 	type Query {
 		# user(username: String!): User
 		# allFemaleUsers
+		getUser(userId: ID!): User
+
 		allUsers: [User]
 		allMen: [User]!
 		allWomen: [User]!
@@ -64,6 +73,12 @@ const typeDefs = gql`
 		): Auth
 		loginUser(username: String!, password: String!): Auth
 		deleteUser(userId: ID!, password: String!): Auth
+		createMessage(
+			messageSenderId: ID!
+			messageRecipientId: ID!
+			messageBody: String!
+		): Message
+		deleteMessage(userId: ID!, messageId: ID!): Message
 	}
 `;
 

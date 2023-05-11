@@ -75,3 +75,14 @@ export const REMOVE_LIKED_USER = gql`
 		}
 	}
 `;
+
+export const CREATE_MESSAGE = gql`
+	mutation createMessage($messageSenderId: ID!, messageRecipientId: ID!, messageBody: String!) {
+		createMessage(messageSenderId: $messageSenderId, messageRecipientId: $messageRecipientId, messageBody: $messageBody) {
+			_id
+			messageSenderId
+			messageRecipientId
+			createdAt
+		}
+	}
+`
