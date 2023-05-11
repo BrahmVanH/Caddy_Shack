@@ -49,7 +49,7 @@ export default function Login() {
 			});
 			console.log(data);
 			// Logs user in and stores token
-			Auth.login(data.createUser.token);
+			Auth.login(data.loginUser.token);
 		
 			window.location.assign('/profile');
 			console.log(data.createUser.token);

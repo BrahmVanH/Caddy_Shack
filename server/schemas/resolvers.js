@@ -65,8 +65,8 @@ const resolvers = {
 
 			return { token, newUser };
 		},
-		loginUser: async (parent, { email, password }) => {
-			const user = await User.findOne({ email });
+		loginUser: async (parent, { username, password }) => {
+			const user = await User.findOne({ username });
 
 			if (!user) {
 				throw new AuthenticationError('No user found with that email!');
@@ -78,9 +78,9 @@ const resolvers = {
 				throw new AuthenticationError('Incorrect password!');
 			}
 
-			const token = signToken(newUser);
+			const token = signToken(user);
 
-			return { token, newUser };
+			return { token, user };
 		},
 		deleteUser: async (parent, { userId, password }) => {
 			const user = await User.findOne({ userId });
