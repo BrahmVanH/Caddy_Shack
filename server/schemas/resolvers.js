@@ -61,6 +61,7 @@ const resolvers = {
 			});
 
 			const token = signToken(newUser);
+			console.log(`signing token with ${newUser} info...`)
 
 			return { token, newUser };
 		},
