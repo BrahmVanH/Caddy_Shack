@@ -33,7 +33,9 @@ function Navbar() {
               <a className="loginBtn btn ms-md-2" role="button" href="/profile">
               Profile
               </a>  
-          
+              <a className="messagesBtn btn ms-md-2" role="button" href="/message">
+              Messages
+              </a>  
               <button className="logoutBtn btn ms-md-2" role="button" onClick={Auth.logout}>
                 Logout
               </button>

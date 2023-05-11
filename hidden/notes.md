@@ -36,3 +36,28 @@ message
 				gender: userFormData.gender,
 				genderInterest: userFormData.genderInterest,
 				bio: userFormData.bio,
+
+
+Messages Notes:
+  option to send message only after both like each other?
+  send message if you like someone?
+
+Models:
+  User:
+    add prototype to find matches (compared likedUsers to likedMe)
+
+typeDefs:
+  type User
+    likedMe: [User]
+    matches: [User]
+  
+  type Query  
+    allMatches(userId: ID!): User
+  
+  allMatches: async (parent, { userId }) => {
+    const user = await User.find({ _id: userId });
+    const matches = user.getMatches();
+
+    
+
+  }

@@ -1,9 +1,19 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Message } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
 	Query: {
+		user: async (parent, { userId }) => {
+			const foundUser = await User.findOne({ _id: userId });
+
+			if (!foundUser) {
+				throw new Error('Cannot find user with that ID!');
+			}
+
+			return foundUser;
+		},
+	
 		allUsers: async () => {
 			const allUsers = await User.find({});
 			console.log(allUsers);
@@ -61,7 +71,7 @@ const resolvers = {
 			});
 
 			const token = signToken(newUser);
-			console.log(`signing token with ${newUser} info...`)
+			console.log(`signing token with ${newUser} info...`);
 
 			return { token, newUser };
 		},
@@ -124,6 +134,28 @@ const resolvers = {
 				{ $pull: { likedUsers: likedUserId } }
 			);
 			return user;
+		},
+
+		createMessage: async (
+			parent,
+			{ messageSenderId, messageRecipientId, messageBody }
+		) => {
+			console.log(`creating message: ${messageBody}`);
+			const message = await Message.create({
+				messageSenderId,
+				messageRecipientId,
+				messageBody,
+			});
+			console.log(message);
+			return message;
+		},
+
+		deleteMessage: async (parent, { userId, messageId }) => {
+			const user = await User.findOneAndUpdate(
+				{ _id: userId },
+				{ $pull: { messages: messageId } }
+			);
+			return message;
 		},
 	},
 };
