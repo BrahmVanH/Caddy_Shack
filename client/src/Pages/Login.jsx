@@ -8,11 +8,13 @@ import "./assets/css/login.css";
 
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 
 export default function Login() {
 	const [loginFormData, setLoginFormData] = useState({
-		
+		username: '',
+		password: ''
 	});
 
 	const [validated] = useState(false);
@@ -27,6 +29,7 @@ export default function Login() {
 	};
 
 	const handleFormSubmit = async (event) => {
+		console.log('submitting login form...')
 		event.preventDefault();
 
 		const form = event.currentTarget;
@@ -38,12 +41,19 @@ export default function Login() {
 		
 
 		try {
+			console.log('creating login user object...')
 			const { data } = await loginUser({
 				variables: {
 					...loginFormData,
 				},
 			});
 			console.log(data);
+			// Logs user in and stores token
+			Auth.login(data.loginUser.token);
+		
+			window.location.assign('/profile');
+			console.log(data.createUser.token);
+
 		} catch (err) {
 			console.error(err);
 			setShowAlert(true);
@@ -110,13 +120,7 @@ export default function Login() {
 					</Form.Group>
 					
           <div className='mb-3 d-flex justify-content-around'>
-						<Link 
-						disabled={
-										!(
-											loginFormData.username &&
-											loginFormData.password 
-										)
-									} to='/Profile'>
+					
               <Button
 									disabled={
 										!(
@@ -129,10 +133,9 @@ export default function Login() {
 									>
 										Login
 							</Button>
-            </Link>
 						<Link to='/signup'>
               <Button className='btn d-block login-buttons' type='submit' variant='success'>
-                Signup
+                Sign Up
                 </Button>
                 </Link>
 						</div>
