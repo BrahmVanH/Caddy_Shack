@@ -1,6 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../../assets/img/logo.png";
 import "../Navbar/navbar.css"
+import Auth from '../../../utils/auth';
+
+
 
 function Navbar() {
   return (
@@ -25,9 +28,21 @@ function Navbar() {
             <ul className="navbar-nav ms-auto">
               <li className="nav-item"></li>
             </ul>
-            <a className="loginBtn btn ms-md-2" role="button" href="/login">
-              Login/Sign Up
-            </a>
+            {Auth.loggedIn() ? (
+              <>
+              <a className="loginBtn btn ms-md-2" role="button" href="/profile">
+              Profile
+              </a>  
+          
+              <button className="logoutBtn btn ms-md-2" role="button" onClick={Auth.logout}>
+                Logout
+              </button>
+              </>
+            ) : (
+              <a className="loginBtn btn ms-md-2" role="button" href="/login">
+                Login/Sign Up
+              </a>
+            )}
           </div>
         </div>
       </nav>

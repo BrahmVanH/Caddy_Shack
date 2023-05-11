@@ -21,23 +21,32 @@ export const CREATE_USER = gql`
 			genderInterest: $genderInterest
 			bio: $bio
 		) {
-			_id
-			firstName
-			lastName
-			username
-			age
-			gender
-			genderInterest
-			bio
+			token
+			user {
+				_id
+				firstName
+				lastName
+				username
+				age
+				gender
+				genderInterest
+				bio
+			}
 		}
 	}
 `;
 
 export const LOGIN_USER = gql`
-	mutation loginUser($email: String!, $password: String!) {
-		loginUser(email: $email, password: $password) {
-			email
-			password
+	mutation loginUser($username: String!, $password: String!) {
+		loginUser(username: $username, password: $password) {
+			token
+			user {
+				_id
+				username
+				likedUsers {
+					_id
+				}
+			}
 		}
 	}
 `;
