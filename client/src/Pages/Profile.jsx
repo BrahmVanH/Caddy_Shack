@@ -2,10 +2,13 @@ import { useQuery, gql } from "@apollo/client";
 import gopher from "./assets/img/gopher.png";
 import "./assets/css/profile.css";
 import { Link } from "react-router-dom";
+import Auth from "../utils/auth"
+
 
 const GET_USER = gql` 
 query GetUser($userId: ID!) {
   getUser(userId: $userId) {
+    _id
     username
     bio
     age
@@ -17,7 +20,9 @@ query GetUser($userId: ID!) {
 
 
 function Profile() {
-  const {loading, error, data} = useQuery(GET_USER);
+  const {loading, error, data} = useQuery(GET_USER, {
+    variables: { userId: Auth.getProfile().data._id}
+  });
 
   if (loading) {
     return <div>Loading Your Profile!</div>;
