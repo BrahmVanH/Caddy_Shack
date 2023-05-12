@@ -1,22 +1,43 @@
+import { useQuery, gql } from "@apollo/client";
 import gopher from "./assets/img/gopher.png";
 import "./assets/css/profile.css";
 import { Link } from "react-router-dom";
 
+const GET_USER = gql` 
+query GetUser($userId: ID!) {
+  getUser(userId: $userId) {
+    username
+    bio
+    age
+    gender
+    genderInterest
+  }
+}`
+
+
 
 function Profile() {
+  const {loading, error, data} = useQuery(GET_USER);
+
+  if (loading) {
+    return <div>Loading Your Profile!</div>;
+  }
+
+  if (error) {
+    return <div>There was an error loading your profile: {error.message}</div>;
+  }
+  const { username, bio, age, gender, genderInterest } = data.getUser;
+  
+
   return (
+
+    
     <div>
       <div className="card profileCard">
         <img src={gopher} className="card-img-top" alt="placeholder" />
         <div className="card-body">
-          <h5 className="card-title">User Name</h5>
-          <p className="card-text">
-            User Bio - Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Phasellus pretium massa auctor velit congue, id pharetra nunc
-            convallis. Nullam volutpat est libero, sed tristique libero
-            efficitur sed. Vestibulum ante ipsum primis in faucibus orci luctus
-            et ultrices posuere cubilia curae; Suspendisse non elit nibh.
-          </p>
+          <h5 className="card-title">{username} </h5>
+          <p className="card-text">{bio} </p>
           <Link to="/matching" className="btn btn-primary myBtn">
             Find a Partner
           </Link>
@@ -25,9 +46,9 @@ function Profile() {
           </Link>
         </div>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">Age</li>
-          <li className="list-group-item">Gender</li>
-          <li className="list-group-item">Gender Interested In</li>
+          <li className="list-group-item">Age: {age} </li>
+          <li className="list-group-item">Gender: {gender} </li>
+          <li className="list-group-item">Gender Interested In: {genderInterest}</li>
         </ul>
       </div>
     </div>
