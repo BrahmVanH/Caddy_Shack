@@ -38,15 +38,31 @@ const resolvers = {
 			return users;
 		},
 		allMatches: async (parent, { userId }) => {
-			const user = await User.find({ _id: userId });
-			if (!user) {
-				throw new Error('Sorry, no user with that ID.');
-			}
-			const matches = await user.getMatches();
-			if (!matches) {
+			 createMatches = async () => {
+					const user = await User.findOne({ _id: userId })
+					const iLikeIds = user.iLike.map((id) =>
+						id.toString()
+					);
+					const likeMeIds = user.likeMe.map((id) =>
+						id.toString()
+					);
+
+					return iLikeIds.filter((id) => likeMeIds.includes(id));
+
+				};
+			const matchIds = await createMatches();
+			
+			if (!matchIds) {
 				throw new Error('Sorry, you have no matches.');
 			}
-			return matches;
+			matchUserProfiles = [];
+
+			for (const id of matchIds) {
+				const user = await User.findOne({ _id: id });
+				matchUserProfiles.push(user);
+			}
+
+			return matchUserProfiles;
 		},
 	},
 	Mutation: {

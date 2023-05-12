@@ -82,10 +82,19 @@ export const ALL_WOMEN = gql`
 	}
 `;
 
+
+
 export const ALL_MATCHES = gql`
-	query allMatches($userId: ID!) {
-		allMatches(userId: $userId) {
-			matchIds
+	query allMatches($matchedIds: [ID]!) {
+		matchedUserProfiles(matchedIds: $matchedIds) {
+			user {
+				_id
+				firstName
+				lastName
+				username
+				bio
+
+			}
 		}
 	}
-`;
+`

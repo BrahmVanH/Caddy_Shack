@@ -76,17 +76,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
 	return bcrypt.compare(password, this.password);
 };
 
-userSchema.methods.getMatches = function () {
-	const iLikeIds = this.iLike.map((id) => id.toString());
-	const likeMeIds = this.likeMe.map((id) => id.toString());
-
-	const matches = iLikeIds.filter((id) => likeMeIds.includes(id));
-
-	return matches;
-};
-
-
-
 
 
 const User = model('User', userSchema);

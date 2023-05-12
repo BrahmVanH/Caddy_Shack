@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useQuery } from "@apollo/client";
-import { ALL_MATCHES } from '../utils/queries';
+import { ALL_MATCHES, GET_ME } from '../utils/queries';
+
+import Auth from '../utils/auth';
 
 import gopher from "./assets/img/gopher.png";
 import "./assets/css/match.css";
@@ -10,7 +12,7 @@ function Match() {
 
   const [allMatches, setAllMatches] = useState(null);
      
-    const { data } = userQuery(ALL_MATCHES, {
+    const { data } = useQuery(ALL_MATCHES, {
       variables: { userId: Auth.getProfile().data._id },
     });
 
@@ -21,8 +23,8 @@ function Match() {
       getMatches(allMatchIds);
     }, allMatchIds);
   
-  
-  const getMatches = (allMatchIds) => {
+
+  const getMatches = (createMatches) => {
     for (const id of allMatchIds) {
       const { data } = useQuery(GET_ME, {
         variables: { userId: id },
@@ -31,16 +33,18 @@ function Match() {
       setAllMatches({ ...allMatches, matchedUserData});
     }
   };
+
+  
   
    
   
-  if (loading) {
-    return <div>Loading Your Matches!</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading Your Matches!</div>;
+  // }
 
-  if (error) {
-    return <div>There was an error loading your matches: {error.message}</div>;
-  }
+  // if (error) {
+  //   return <div>There was an error loading your matches: {error.message}</div>;
+  // }
 
   
 

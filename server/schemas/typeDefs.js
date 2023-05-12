@@ -43,8 +43,8 @@ const typeDefs = gql`
 		createdAt: String!
 	}
 
-	type Matches {
-		matchIds: [ID]
+	type MatchId {
+		matchId: ID
 	}
 
 	type Auth {
@@ -57,7 +57,7 @@ const typeDefs = gql`
 		allUsers: [User]
 		allMen: [User]!
 		allWomen: [User]!
-		allMatches(userId: ID!): Matches
+		allMatches(userId: ID!): [User]!
 	}
 
 	type Mutation {
