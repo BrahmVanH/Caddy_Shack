@@ -58,6 +58,8 @@ const typeDefs = gql`
 		allMen: [User]!
 		allWomen: [User]!
 		allMatches(userId: ID!): [User]!
+		allReceivedMessages(userId: ID!): [Message]!
+		allSentMessages(userId: ID!): [Message]!
 	}
 
 	type Mutation {

@@ -58,6 +58,16 @@ const resolvers = {
 			}
 			return matchUserProfiles;
 		},
+		allReceivedMessages: async (parent, { userId }) => {
+			const messages = await Message.find({ messageRecipientId: userId });
+			
+			return messages;
+		},
+		allSentMessages: async (parent, { userId }) => {
+			const messages = await Message.find({ messageSenderId: userId });
+			
+			return messages;
+		},
 	},
 	Mutation: {
 		createUser: async (
@@ -196,7 +206,7 @@ const resolvers = {
 			);
 
 			if (!recipient) {
-				throw new Error('no user found with that ID, try again')
+				throw new Error('no user found with that ID, try again');
 			}
 
 			return message;
