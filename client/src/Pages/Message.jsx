@@ -30,25 +30,25 @@
 // 			event.stopPropagation();
 // 		}
 
-//     const { data } = userQuery(GET_ME, {
-//       variables: { userId: Auth.getProfile().data._id },
-//     });
+//   //   const { data } = userQuery(GET_ME, {
+//   //     variables: { userId: Auth.getProfile().data._id },
+//   //   });
 
-//     const userId = data?.user._id
+//   //   const userId = data?.user._id
 
-//     try {
-//       const { data } = await createMessage({
-//         variables: {
-//           messageSenderId: userId,
-//           messageRecipientId: likedUserId,
-//           messageBody: messageBody
-//         },
-//       });
-//     } catch (err) {
-//       console.error(err);
-// 			setShowAlert(true);
-//     }
-//   }
+//   //   try {
+//   //     const { data } = await createMessage({
+//   //       variables: {
+//   //         messageSenderId: userId,
+//   //         messageRecipientId: likedUserId,
+//   //         messageBody: messageBody
+//   //       },
+//   //     });
+//   //   } catch (err) {
+//   //     console.error(err);
+// 	// 		setShowAlert(true);
+//   //   }
+//   // }
 
 
 //   //Need to add a way to import likedUsers
