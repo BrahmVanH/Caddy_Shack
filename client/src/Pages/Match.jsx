@@ -27,10 +27,6 @@ function Match() {
     return <div>Loading Your Matches!</div>;
   }
 
-  
-
-  
-
   return (
     <div className="matchCards">
       {allMatches.map((match) => (

@@ -75,7 +75,7 @@ const typeDefs = gql`
 		): Auth
 		loginUser(username: String!, password: String!): Auth
 		deleteUser(userId: ID!, password: String!): Auth
-		createMessage(
+		sendMessage(
 			messageSenderId: ID!
 			messageRecipientId: ID!
 			messageBody: String!
