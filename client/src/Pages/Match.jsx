@@ -1,22 +1,41 @@
-import React from "react";
-import { useQuery, gql } from "@apollo/client";
+import React, { useState } from "react";
+
+import { useQuery } from "@apollo/client";
+import { ALL_MATCHES } from '../utils/queries';
+
 import gopher from "./assets/img/gopher.png";
 import "./assets/css/match.css";
 
-const GET_MATCHES = gql`
-  query {
-    allMatches {
-      username
-      bio
-    }
-  }
-`;
-
 function Match() {
-  const { loading, error, data } = useQuery(GET_MATCHES);
 
+  const [allMatches, setAllMatches] = useState(null);
+     
+    const { data } = userQuery(ALL_MATCHES, {
+      variables: { userId: Auth.getProfile().data._id },
+    });
+
+    const allMatchIds = data.matchIds;
+    
+  
+    useEffect(() => {
+      getMatches(allMatchIds);
+    }, allMatchIds);
+  
+  
+  const getMatches = (allMatchIds) => {
+    for (const id of allMatchIds) {
+      const { data } = useQuery(GET_ME, {
+        variables: { userId: id },
+      });
+      const matchedUserData = data.user._id;
+      setAllMatches({ ...allMatches, matchedUserData});
+    }
+  };
+  
+   
+  
   if (loading) {
-    return <div>Loading Your Matchs!</div>;
+    return <div>Loading Your Matches!</div>;
   }
 
   if (error) {

@@ -4,7 +4,7 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
 	Query: {
-		user: async (parent, { userId }) => {
+		getUser: async (parent, { userId }) => {
 			const foundUser = await User.findOne({ _id: userId });
 
 			if (!foundUser) {
@@ -13,7 +13,7 @@ const resolvers = {
 
 			return foundUser;
 		},
-	
+
 		allUsers: async () => {
 			const allUsers = await User.find({});
 			console.log(allUsers);
@@ -37,10 +37,14 @@ const resolvers = {
 			}
 			return users;
 		},
-		allMatches: async () => {
-			const matches = await User.find({ saidYesTo: { $ne: [] } });
+		allMatches: async (parent, { userId }) => {
+			const user = await User.find({ _id: userId });
+			if (!user) {
+				throw new Error('Sorry, no user with that ID.');
+			}
+			const matches = await user.getMatches();
 			if (!matches) {
-				throw new Error('Sorry! You have no matches.');
+				throw new Error('Sorry, you have no matches.');
 			}
 			return matches;
 		},
@@ -110,21 +114,36 @@ const resolvers = {
 			return { token, newUser };
 		},
 
-		addLikedUser: async (parent, { userId, likedUserId }) => {
+		likeUser: async (parent, { userId, likedUserId }) => {
 			const user = await User.findOneAndUpdate(
 				{ _id: userId },
-				{ $addToSet: { likedUsers: likedUserId } },
+				{ $addToSet: { iLike: likedUserId } },
 				{
 					new: true,
 					runValidators: true,
 				}
 			);
-			if (!userId) {
+
+			if (!user) {
 				throw new Error(
 					'Could not retrieve user-data, please refresh and try again.'
 				);
 			}
 
+			const likedUser = await User.findOneAndUpdate(
+				{ _id: likedUserId },
+				{ $addToSet: { likeMe: userId } },
+				{
+					new: true,
+					runValidators: true,
+				}
+			);
+
+			if (!likedUser) {
+				throw new Error(
+					'Could not retrieve user-data, please refresh and try again.'
+				);
+			}
 			return user;
 		},
 

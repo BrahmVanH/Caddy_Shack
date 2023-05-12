@@ -61,7 +61,7 @@ export const DELETE_USER = gql`
 `;
 
 export const ADD_LIKED_USER = gql`
-	mutation addLikedUser($userId: ID!, $likedUserId: ID!) {
+	mutation likeUser($userId: ID!, $likedUserId: ID!) {
 		addLikedUser(userId: $userId, likedUserId: $likedUserId) {
 			_id
 		}
@@ -76,13 +76,13 @@ export const REMOVE_LIKED_USER = gql`
 	}
 `;
 
-export const CREATE_MESSAGE = gql`
-	mutation createMessage($messageSenderId: ID!, messageRecipientId: ID!, messageBody: String!) {
-		createMessage(messageSenderId: $messageSenderId, messageRecipientId: $messageRecipientId, messageBody: $messageBody) {
-			_id
-			messageSenderId
-			messageRecipientId
-			createdAt
-		}
-	}
-`
+// export const CREATE_MESSAGE = gql`
+// 	mutation createMessage($messageSenderId: ID!, messageRecipientId: ID!, messageBody: String!) {
+// 		createMessage(messageSenderId: $messageSenderId, messageRecipientId: $messageRecipientId, messageBody: $messageBody) {
+// 			_id
+// 			messageSenderId
+// 			messageRecipientId
+// 			createdAt
+// 		}
+// 	}
+// `

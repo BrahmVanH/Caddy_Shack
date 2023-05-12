@@ -35,7 +35,13 @@ const userSchema = new Schema(
 			type: String,
 			maxlength: 500,
 		},
-		likedUsers: [
+		iLike: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'User',
+			},
+		],
+		likeMe: [
 			{
 				type: Schema.Types.ObjectId,
 				ref: 'User',
@@ -68,6 +74,15 @@ userSchema.pre('save', async function (next) {
 // custom method to compare and validate password for logging in
 userSchema.methods.isCorrectPassword = async function (password) {
 	return bcrypt.compare(password, this.password);
+};
+
+userSchema.methods.getMatches = function () {
+	const iLikeIds = this.iLike.map((id) => id.toString());
+	const likeMeIds = this.likeMe.map((id) => id.toString());
+
+	const matches = iLikeIds.filter((id) => likeMeIds.includes(id));
+
+	return matches;
 };
 
 
