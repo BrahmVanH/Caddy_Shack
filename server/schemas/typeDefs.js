@@ -51,7 +51,7 @@ const typeDefs = gql`
 		# user(username: String!): User
 		# allFemaleUsers
 		getUser(userId: ID!): User
-
+		possibleMatches: [User]
 		allUsers: [User]
 		allMen: [User]!
 		allWomen: [User]!

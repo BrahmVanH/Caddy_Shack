@@ -5,8 +5,8 @@ import "../Matching/potential.css";
 import { Link } from "react-router-dom";
 
 const GET_INTEREST = gql`
-  query($genderInterest: STRING!) {
-    allUsers(gender: $genderInterest) {
+  query{
+    possibleMatches {
       username
       bio
     }
@@ -14,7 +14,7 @@ const GET_INTEREST = gql`
 `;
 
 function PotentialMatch({ genderInterest }) {
-  const { loading, error, data } = useQuery(GET_INTEREST, {variables: {genderInterest}});
+  const { loading, error, data } = useQuery(GET_INTEREST);
 
   if (loading) {
     return <div>Loading Your Matchs!</div>;
@@ -27,7 +27,7 @@ function PotentialMatch({ genderInterest }) {
   return (
     
 <div className="matchCards">
-{data.allWomen.map((match) => (
+{data.possibleMatches.map((match) => (
   <div key={match.username} className="myCard">
     <div className="card" style={{width:"25rem"}}>
       <img src={gopher} className="card-img-top" alt="placeholder" />
