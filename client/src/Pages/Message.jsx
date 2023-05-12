@@ -2,7 +2,7 @@ import "./assets/css/message.css";
 import { CREATE_MESSAGE } from "../utils/mutations";
 import { GET_ME } from "../utils/queries";
 import { useMutation, useQuery } from "@apollo/client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
 function Message() {
@@ -13,12 +13,21 @@ function Message() {
     messageBody: ''
   });
 
+  const [messageSenderId, setMessageSenderId] = useState('');
+  const [messageRecipientId, setMessageRecipientId] = useState('');
+
+  useEffect
+
   const handleInputChange = (event) => {
 		const { name, value } = event.target;
 		setMessageBody({ messageBody, [name]: value });
 	};
 
-  const [getUser] = useQuery(GET_ME);
+  const [getUser] = useQuery(GET_ME, {
+    variables: { userId: Auth.getProfile().data._id },
+  });
+
+  
   const [createMessage] = useMutation(CREATE_MESSAGE);
 
   const handleMessageSend = async (event) => {

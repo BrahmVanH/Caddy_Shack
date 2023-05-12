@@ -76,13 +76,13 @@ export const REMOVE_LIKED_USER = gql`
 	}
 `;
 
-// export const SEND_MESSAGE = gql`
-// 	mutation sendMessage($messageSenderId: ID!, messageRecipientId: ID!, messageBody: String!) {
-// 		sendMessage(messageSenderId: $messageSenderId, messageRecipientId: $messageRecipientId, messageBody: $messageBody) {
-// 			_id
-// 			messageSenderId
-// 			messageRecipientId
-// 			createdAt
-// 		}
-// 	}
-// `
+export const SEND_MESSAGE = gql`
+	mutation sendMessage($messageSenderId: ID!, messageRecipientId: ID!, messageBody: String!) {
+		sendMessage(messageSenderId: $messageSenderId, messageRecipientId: $messageRecipientId, messageBody: $messageBody) {
+			_id
+			messageSenderId
+			messageRecipientId
+			createdAt
+		}
+	}
+`
