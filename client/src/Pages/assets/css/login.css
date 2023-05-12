@@ -13,3 +13,8 @@
   background-color: grey;
   color: black;
 }
+
+form .alert-dismissible .btn-close {
+  padding: 5px
+  
+}

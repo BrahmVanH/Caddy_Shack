@@ -43,7 +43,7 @@ export const LOGIN_USER = gql`
 			user {
 				_id
 				username
-				likedUsers {
+				iLike {
 					_id
 				}
 			}

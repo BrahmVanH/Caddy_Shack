@@ -61,7 +61,6 @@ const resolvers = {
 				const user = await User.findOne({ _id: id });
 				matchUserProfiles.push(user);
 			}
-
 			return matchUserProfiles;
 		},
 	},
@@ -91,22 +90,24 @@ const resolvers = {
 			});
 
 			const token = signToken(newUser);
-			console.log(`signing token with ${newUser} info...`);
 
 			return { token, newUser };
 		},
 		loginUser: async (parent, { username, password }) => {
 			const user = await User.findOne({ username });
 
+
 			if (!user) {
 				throw new AuthenticationError('No user found with that email!');
 			}
+
 
 			const correctPassword = await user.isCorrectPassword(password);
 
 			if (!correctPassword) {
 				throw new AuthenticationError('Incorrect password!');
 			}
+
 
 			const token = signToken(user);
 

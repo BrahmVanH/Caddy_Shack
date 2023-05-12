@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Card, Form, Button, Alert } from 'react-bootstrap';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/login.css";
@@ -28,8 +28,13 @@ export default function Login() {
 		setLoginFormData({ ...loginFormData, [name]: value });
 	};
 
+
+	const handleSignupBtnClick = async (event) => {
+		event.preventDefault();
+
+		window.location.replace('/signup');
+	}
 	const handleFormSubmit = async (event) => {
-		console.log('submitting login form...')
 		event.preventDefault();
 
 		const form = event.currentTarget;
@@ -41,18 +46,15 @@ export default function Login() {
 		
 
 		try {
-			console.log('creating login user object...')
 			const { data } = await loginUser({
 				variables: {
 					...loginFormData,
 				},
 			});
-			console.log(data);
 			// Logs user in and stores token
 			Auth.login(data.loginUser.token);
 		
 			window.location.assign('/profile');
-			console.log(data.createUser.token);
 
 		} catch (err) {
 			console.error(err);
@@ -61,9 +63,9 @@ export default function Login() {
 	};
 	return (
 <div className='myContainer container'>
-			<div className='row d-flex justify-content-center'>
+			<div className='row d-flex justify-content-center py-5'  style={{minHeight: '492px', minWidth: '388px'}} >
 				<div className='col-12'>
-					<div className='card mb-4 p-3'>
+					<div className='card mb-4 p-3' style={{minWidth: '364px', minHeight: '430px'}} >
 						<div className='card-body d-flex flex-column align-items-center'>
 							<h1>Login</h1>
 							<div className='bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4'>
@@ -79,17 +81,20 @@ export default function Login() {
 							</div>
 						</div>
 
-		<div className='row register-form'>
-			<div className='col-md-8 offset-md-2'>
+		<div className='row register-form d-flex justify-content-center'>
+			<div className='col-md-8'>
 				<Form className='text-center' noValidate validated={validated} onSubmit={handleFormSubmit}>
 					<Alert
 						dismissible
 						onClose={() => setShowAlert(false)}
 						show={showAlert}
-						variant='danger'>
-						Something went wrong with your signup!
+						variant='danger'
+						className='m-auto'
+						style={{maxWidth: '75%', fontSize: '.75rem', padding: '5px'}}
+						>
+						Incorrect username/password
 					</Alert>
-					<Form.Group className='mb-3'>
+					<Form.Group className='my-3'>
 							
 							<Form.Control
 								type='text'
@@ -122,24 +127,19 @@ export default function Login() {
           <div className='mb-3 d-flex justify-content-around'>
 					
               <Button
-									disabled={
-										!(
-											loginFormData.username &&
-											loginFormData.password 
-										)
-									}
+								
 									className='btn d-block login-buttons'
 									type='submit'
 									>
 										Login
 							</Button>
-						<Link to='/signup'>
-              <Button className='btn d-block login-buttons' type='submit' variant='success'>
+				
+              <Button className='btn d-block login-buttons' onClick={handleSignupBtnClick} type='button'>
                 Sign Up
                 </Button>
-                </Link>
+                
 						</div>
-				</Form>
+					</Form>
 			</div>
 		</div>
 		</div>
