@@ -61,6 +61,7 @@ const resolvers = {
 		allReceivedMessages: async (parent, { userId }) => {
 			const messages = await Message.find({ messageRecipientId: userId });
 			
+			
 			return messages;
 		},
 		allSentMessages: async (parent, { userId }) => {
@@ -68,6 +69,11 @@ const resolvers = {
 			
 			return messages;
 		},
+		getAllMessagesByAllUsers: async () => {
+			const messages = await Message.find();
+
+			return messages;
+		}
 	},
 	Mutation: {
 		createUser: async (

@@ -52,6 +52,7 @@ const typeDefs = gql`
 		user: User
 	}
 
+
 	type Query {
 		getUser(userId: ID!): User
 		allUsers: [User]
@@ -60,6 +61,7 @@ const typeDefs = gql`
 		allMatches(userId: ID!): [User]!
 		allReceivedMessages(userId: ID!): [Message]!
 		allSentMessages(userId: ID!): [Message]!
+		getAllMessagesByAllUsers: [Message]!
 	}
 
 	type Mutation {
@@ -83,6 +85,7 @@ const typeDefs = gql`
 			messageBody: String!
 		): Message
 		deleteMessage(userId: ID!, messageId: ID!): Message
+		
 	}
 `;
 

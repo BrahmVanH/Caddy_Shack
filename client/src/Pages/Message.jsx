@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_ME } from "../utils/queries";
 
-import { CREATE_MESSAGE, GET_RECEIVED_MESSAGES, GET_SENT_MESSAGES } from "../utils/mutations";
+import { CREATE_MESSAGE } from "../utils/mutations";
+import { GET_RECEIVED_MESSAGES, GET_SENT_MESSAGES } from '../utils/queries';
 
 import Auth from '../utils/auth';
 
@@ -25,22 +26,24 @@ function Message() {
   });
 
   useEffect(() => {
-    setAllMessages(data.allMessages)
-  }, [allMessages]);
+   if (data && data.allReceivedMessages) {
+    setAllMessages(data.allReceivedMessages);
+   };
+  }, [data]);
 
-  useEffect(() => {
-    setOpenedMessage(handlePreviewClick)
-  }, [handlePreviewClick]);
-
-  const handlePreviewClick = async (event) => {
-    event.preventDefault();
-
-    const selectedMessage = event.target.message;
-
-    return selectedMessage;
-    // query to get individual message
-  }
-
+  
+  // const handlePreviewClick = async (event) => {
+  //   event.preventDefault();
+    
+  //   const selectedMessage = event.target.message;
+    
+  //   return selectedMessage;
+  //   // query to get individual message
+  // }
+  
+  // useEffect(() => {
+  //   setOpenedMessage(handlePreviewClick)
+  // }, [handlePreviewClick]);
 
 
   // const [messageBody, setMessageBody] = useState({
@@ -97,27 +100,29 @@ function Message() {
   //   }
   // }
 
-  const createMessageBodyPreview = (messageBody) => {
-    const bodyPreview = messageBody.slice(0,16).concat('...');
+  // const createMessageBodyPreview = (messageBody) => {
+  //   const bodyPreview = messageBody.slice(0,16).concat('...');
 
-    return bodyPreview;
+  //   return bodyPreview;
 
-  }
+  
 
+  
   return (
+    
     <div>
       <div className='container'>
         <div className='col-2 inbox'>
         {Auth.loggedIn() ? (
           <div className='allMessages'>
               {allMessages.map((message) => (
-                <button onClick={handlePreviewClick}>
+                // <button onClick={handlePreviewClick}>
                 <div className='message-preview'>
                 <h2>{message.sender}</h2>
-                <p>{{createMessageBodyPreview}}</p>
+                <p>{message.messageBody}</p>
                 <p>{message.createdAt}</p>
                 </div>
-                </button>
+                // </button>
                 ))}
           </div>
             ) : (

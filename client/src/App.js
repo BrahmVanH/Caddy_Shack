@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import Home from './Pages/Home';
 import Match from './Pages/Match';
-// import Message from './Pages/Message';
+import Message from './Pages/Message';
 import NotFound from './Pages/NotFound';
 import Profile from './Pages/Profile';
 import Login from './Pages/Login';
@@ -34,10 +34,10 @@ function App() {
               path="/match" 
               element={<Match />}
             />
-            {/* <Route 
+            <Route 
               path="/message" 
               element={<Message />}
-            /> */}
+            />
             <Route 
               path="/profile" 
               element={<Profile />}
