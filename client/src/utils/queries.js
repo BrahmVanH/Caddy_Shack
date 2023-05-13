@@ -17,16 +17,14 @@ export const GET_ME = gql`
 	}
 `;
 
-// 
-
 export const ALL_USERS = gql`
 	query allUsers {
 		allUsers {
 			firstName
 			lastName
-			username
 			age
 			gender
+			username
 			bio
 			genderInterest
 			messages {
@@ -81,5 +79,17 @@ export const ALL_WOMEN = gql`
 				messageSender
 			}
 		}
+	}
+`;
+
+export const ALL_MATCHES = gql`
+	query allMatches($userId: ID!) {
+		allMatches(userId: $userId) {
+				_id
+				firstName
+				lastName
+				bio
+			}
+		
 	}
 `;

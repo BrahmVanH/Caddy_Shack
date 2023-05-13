@@ -13,7 +13,7 @@ const resolvers = {
 
 			return foundUser;
 		},
-	
+
 		allUsers: async () => {
 			const allUsers = await User.find({});
 			console.log(allUsers);
@@ -37,12 +37,31 @@ const resolvers = {
 			}
 			return users;
 		},
-		allMatches: async () => {
-			const matches = await User.find({ saidYesTo: { $ne: [] } });
-			if (!matches) {
-				throw new Error('Sorry! You have no matches.');
+		allMatches: async (parent, { userId }) => {
+			 createMatches = async () => {
+					const user = await User.findOne({ _id: userId })
+					const iLikeIds = user.iLike.map((id) =>
+						id.toString()
+					);
+					const likeMeIds = user.likeMe.map((id) =>
+						id.toString()
+					);
+
+					return iLikeIds.filter((id) => likeMeIds.includes(id));
+
+				};
+			const matchIds = await createMatches();
+			
+			if (!matchIds) {
+				throw new Error('Sorry, you have no matches.');
 			}
-			return matches;
+			matchUserProfiles = [];
+
+			for (const id of matchIds) {
+				const user = await User.findOne({ _id: id });
+				matchUserProfiles.push(user);
+			}
+			return matchUserProfiles;
 		},
 	},
 	Mutation: {
@@ -71,22 +90,24 @@ const resolvers = {
 			});
 
 			const token = signToken(newUser);
-			console.log(`signing token with ${newUser} info...`);
 
 			return { token, newUser };
 		},
 		loginUser: async (parent, { username, password }) => {
 			const user = await User.findOne({ username });
 
+
 			if (!user) {
 				throw new AuthenticationError('No user found with that email!');
 			}
+
 
 			const correctPassword = await user.isCorrectPassword(password);
 
 			if (!correctPassword) {
 				throw new AuthenticationError('Incorrect password!');
 			}
+
 
 			const token = signToken(user);
 
@@ -110,21 +131,36 @@ const resolvers = {
 			return { token, newUser };
 		},
 
-		addLikedUser: async (parent, { userId, likedUserId }) => {
+		likeUser: async (parent, { userId, likedUserId }) => {
 			const user = await User.findOneAndUpdate(
 				{ _id: userId },
-				{ $addToSet: { likedUsers: likedUserId } },
+				{ $addToSet: { iLike: likedUserId } },
 				{
 					new: true,
 					runValidators: true,
 				}
 			);
-			if (!userId) {
+
+			if (!user) {
 				throw new Error(
 					'Could not retrieve user-data, please refresh and try again.'
 				);
 			}
 
+			const likedUser = await User.findOneAndUpdate(
+				{ _id: likedUserId },
+				{ $addToSet: { likeMe: userId } },
+				{
+					new: true,
+					runValidators: true,
+				}
+			);
+
+			if (!likedUser) {
+				throw new Error(
+					'Could not retrieve user-data, please refresh and try again.'
+				);
+			}
 			return user;
 		},
 

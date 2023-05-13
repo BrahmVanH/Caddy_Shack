@@ -43,7 +43,7 @@ export const LOGIN_USER = gql`
 			user {
 				_id
 				username
-				likedUsers {
+				iLike {
 					_id
 				}
 			}
@@ -61,7 +61,7 @@ export const DELETE_USER = gql`
 `;
 
 export const ADD_LIKED_USER = gql`
-	mutation addLikedUser($userId: ID!, $likedUserId: ID!) {
+	mutation likeUser($userId: ID!, $likedUserId: ID!) {
 		addLikedUser(userId: $userId, likedUserId: $likedUserId) {
 			_id
 		}

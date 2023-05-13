@@ -1,33 +1,39 @@
-import React from "react";
-import { useQuery, gql } from "@apollo/client";
+import React, { useState, useEffect } from "react";
+
+import { useQuery } from "@apollo/client";
+import { ALL_MATCHES } from '../utils/queries';
+
+import Auth from '../utils/auth';
+
 import gopher from "./assets/img/gopher.png";
 import "./assets/css/match.css";
 
-const GET_MATCHES = gql`
-  query {
-    allMatches {
-      username
-      bio
-    }
-  }
-`;
-
 function Match() {
-  const { loading, error, data } = useQuery(GET_MATCHES);
+
+  const [allMatches, setAllMatches] = useState([{}]);
+
+  const { loading, data } =  useQuery(ALL_MATCHES, {
+    variables: { userId: Auth.getProfile().data._id }
+  });
+  
+  useEffect(() => {
+    if (data && data.allMatches) {
+    setAllMatches(data.allMatches);
+    }
+  }, [data])
+    
 
   if (loading) {
-    return <div>Loading Your Matchs!</div>;
+    return <div>Loading Your Matches!</div>;
   }
 
-  if (error) {
-    return <div>There was an error loading your matches: {error.message}</div>;
-  }
+  
 
   
 
   return (
     <div className="matchCards">
-      {data.allMatches.map((match) => (
+      {allMatches.map((match) => (
         <div key={match.username} className="myCard">
           <div className="card" style={{width:"25rem"}}>
             <img src={gopher} className="card-img-top" alt="placeholder" />
