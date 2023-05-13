@@ -31,14 +31,18 @@ const typeDefs = gql`
 	type Message {
 		_id: ID!
 		messageSenderId: ID!
+		messageSenderName: String!
 		messageRecipientId: ID!
+		messageRecipientName: String!
 		messageBody: String!
 		createdAt: String!
 	}
 
 	input MessageInput {
 		messageSenderId: ID!
+		messageSenderName: String!
 		messageRecipientId: ID!
+		messageRecipientName: String!
 		messageBody: String!
 		createdAt: String!
 	}
@@ -58,6 +62,9 @@ const typeDefs = gql`
 		allMen: [User]!
 		allWomen: [User]!
 		allMatches(userId: ID!): [User]!
+		allReceivedMessages(userId: ID!): [Message]!
+		allSentMessages(userId: ID!): [Message]!
+		getAllMessagesByAllUsers: [Message]!
 	}
 
 	type Mutation {
@@ -75,9 +82,11 @@ const typeDefs = gql`
 		): Auth
 		loginUser(username: String!, password: String!): Auth
 		deleteUser(userId: ID!, password: String!): Auth
-		createMessage(
+		sendMessage(
 			messageSenderId: ID!
+			messageSenderName: String!
 			messageRecipientId: ID!
+			messageRecipientName: String!
 			messageBody: String!
 		): Message
 		deleteMessage(userId: ID!, messageId: ID!): Message

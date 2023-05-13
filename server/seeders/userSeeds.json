@@ -89,98 +89,98 @@
         "genderInterest": "male",
         "bio": "I'm a huge fan of golf and looking for someone to join me on the course! Let's make some birdies together."
     },
+        
     
- 
-{
-    "firstName": "Grace",
-    "lastName": "Jones",
-    "username": "gracejones",
-    "password": "password01",
-    "age": 28,
-    "gender": "female",
-    "genderInterest": "male",
-    "bio": "I love playing golf and discovering new courses. Looking for someone who shares my passion and wants to explore the greens with me!"
-},
-{
-    "firstName": "David",
-    "lastName": "Lee",
-    "username": "davidlee",
-    "password": "password01",
-    "age": 34,
-    "gender": "male",
-    "genderInterest": "female",
-    "bio": "Golf is more than just a sport for me, it's a lifestyle. I'm looking for a partner who is passionate about the game and wants to grow with me on and off the course."
-},
-{
-    "firstName": "Megan",
-    "lastName": "Scott",
-    "username": "meganscott",
-    "password": "password01",
-    "age": 25,
-    "gender": "female",
-    "genderInterest": "male",
-    "bio": "I'm new to the golfing world but I'm already hooked. Looking for someone who can show me the ropes and introduce me to some new courses!"
-},
-{
-    "firstName": "Jason",
-    "lastName": "Chen",
-    "username": "jasonchen",
-    "password": "password01",
-    "age": 29,
-    "gender": "male",
-    "genderInterest": "female",
-    "bio": "I'm a competitive golfer looking for someone who can keep up with me on the course. When I'm not golfing, I'm probably watching the latest tournament on TV."
-},
-{
-    "firstName": "Olivia",
-    "lastName": "Nguyen",
-    "username": "olivianguyen",
-    "password": "password01",
-    "age": 31,
-    "gender": "female",
-    "genderInterest": "male",
-    "bio": "Golf has been a part of my life for as long as I can remember. I'm looking for someone who is as dedicated to the game as I am and wants to share in the excitement of a great round."
-},
-{
-    "firstName": "Derek",
-    "lastName": "Wong",
-    "username": "derekwong",
-    "password": "password01",
-    "age": 27,
-    "gender": "male",
-    "genderInterest": "female",
-    "bio": "Golf is my escape from the stresses of work and everyday life. Looking for someone who can appreciate the game and the peace it brings."
-},
-{
-    "firstName": "Sophia",
-    "lastName": "Kim",
-    "username": "sophiakim",
-    "password": "password01",
-    "age": 26,
-    "gender": "female",
-    "genderInterest": "male",
-    "bio": "I'm a beginner golfer but I'm excited to learn and improve my game. Looking for someone who is patient and can help me develop my skills."
-},
-{
-    "firstName": "Adam",
-    "lastName": "Ng",
-    "username": "adamng",
-    "password": "password01",
-    "age": 33,
-    "gender": "male",
-    "genderInterest": "female",
-    "bio": "Golf is my passion and I'm looking for someone who shares that passion. Let's explore new courses and enjoy the game together!"
-},
-{
-    "firstName": "Rachel",
-    "lastName": "Tran",
-    "username": "racheltran",
-    "password": "password01",
-    "age": 30,
-    "gender": "female",
-    "genderInterest": "male",
-    "bio": "I'm a competitive golfer and I'm looking for someone who can challenge me on"
-},
+    {
+        "firstName": "Grace",
+        "lastName": "Jones",
+        "username": "gracejones",
+        "password": "password01",
+        "age": 28,
+        "gender": "female",
+        "genderInterest": "male",
+        "bio": "I love playing golf and discovering new courses. Looking for someone who shares my passion and wants to explore the greens with me!"
+    },
+    {
+        "firstName": "David",
+        "lastName": "Lee",
+        "username": "davidlee",
+        "password": "password01",
+        "age": 34,
+        "gender": "male",
+        "genderInterest": "female",
+        "bio": "Golf is more than just a sport for me, it's a lifestyle. I'm looking for a partner who is passionate about the game and wants to grow with me on and off the course."
+    },
+    {
+        "firstName": "Megan",
+        "lastName": "Scott",
+        "username": "meganscott",
+        "password": "password01",
+        "age": 25,
+        "gender": "female",
+        "genderInterest": "male",
+        "bio": "I'm new to the golfing world but I'm already hooked. Looking for someone who can show me the ropes and introduce me to some new courses!"
+    },
+    {
+        "firstName": "Jason",
+        "lastName": "Chen",
+        "username": "jasonchen",
+        "password": "password01",
+        "age": 29,
+        "gender": "male",
+        "genderInterest": "female",
+        "bio": "I'm a competitive golfer looking for someone who can keep up with me on the course. When I'm not golfing, I'm probably watching the latest tournament on TV."
+    },
+    {
+        "firstName": "Olivia",
+        "lastName": "Nguyen",
+        "username": "olivianguyen",
+        "password": "password01",
+        "age": 31,
+        "gender": "female",
+        "genderInterest": "male",
+        "bio": "Golf has been a part of my life for as long as I can remember. I'm looking for someone who is as dedicated to the game as I am and wants to share in the excitement of a great round."
+    },
+    {
+        "firstName": "Derek",
+        "lastName": "Wong",
+        "username": "derekwong",
+        "password": "password01",
+        "age": 27,
+        "gender": "male",
+        "genderInterest": "female",
+        "bio": "Golf is my escape from the stresses of work and everyday life. Looking for someone who can appreciate the game and the peace it brings."
+    },
+    {
+        "firstName": "Sophia",
+        "lastName": "Kim",
+        "username": "sophiakim",
+        "password": "password01",
+        "age": 26,
+        "gender": "female",
+        "genderInterest": "male",
+        "bio": "I'm a beginner golfer but I'm excited to learn and improve my game. Looking for someone who is patient and can help me develop my skills."
+    },
+    {
+        "firstName": "Adam",
+        "lastName": "Ng",
+        "username": "adamng",
+        "password": "password01",
+        "age": 33,
+        "gender": "male",
+        "genderInterest": "female",
+        "bio": "Golf is my passion and I'm looking for someone who shares that passion. Let's explore new courses and enjoy the game together!"
+    },
+    {
+        "firstName": "Rachel",
+        "lastName": "Tran",
+        "username": "racheltran",
+        "password": "password01",
+        "age": 30,
+        "gender": "female",
+        "genderInterest": "male",
+        "bio": "I'm a competitive golfer and I'm looking for someone who can challenge me on"
+    },
 
   {
     "firstName": "Adam",
@@ -261,5 +261,155 @@
     "gender": "female",
     "genderInterest": "male",
     "bio": "I'm a golf lover who enjoys the challenge of the game. Looking for a partner who can share in the thrill of sinking a putt!"
+  },
+  {
+  "firstName": "Andrew",
+  "lastName": "Park",
+  "username": "apark87",
+  "password": "golflover123",
+  "age": 34,
+  "gender": "male",
+  "genderInterest": "female",
+  "bio": "Golf is my passion and I'm looking for a partner who shares the same love for the game. Nothing beats a day out on the links followed by a romantic dinner for two."
+},
+{
+  "firstName": "Mia",
+  "lastName": "Johnson",
+  "username": "mjohnson20",
+  "password": "golfchick1",
+  "age": 29,
+  "gender": "female",
+  "genderInterest": "male",
+  "bio": "Golfing is my escape from reality. Seeking a partner who can make me laugh both on and off the course."
+},
+{
+  "firstName": "Ryan",
+  "lastName": "Lee",
+  "username": "rlee90",
+  "password": "birdiehunter",
+  "age": 31,
+  "gender": "male",
+  "genderInterest": "female",
+  "bio": "Golf is my happy place. Looking for someone who can share in the joy of the game and create lasting memories together."
+},
+{
+  "firstName": "Bridget",
+  "lastName": "Scott",
+  "username": "bscott88",
+  "password": "golfislife",
+  "age": 27,
+  "gender": "female",
+  "genderInterest": "male",
+  "bio": "Golf is my passion and I'm looking for someone who can join me in a round of 18 and maybe even steal my heart."
+},
+{
+  "firstName": "Daniel",
+  "lastName": "Kim",
+  "username": "dkim91",
+  "password": "puttingking",
+  "age": 30,
+  "gender": "male",
+  "genderInterest": "female",
+  "bio": "Golf is my sanctuary. Hoping to find a partner who can appreciate the beauty of the game and enjoy a romantic sunset after a long day on the course."
+},
+{
+  "firstName": "Laura",
+  "lastName": "Nguyen",
+  "username": "lnguyen84",
+  "password": "golflover12",
+  "age": 33,
+  "gender": "female",
+  "genderInterest": "male",
+  "bio": "Golfing is my happy place. Looking for someone who can join me in the pursuit of par and maybe even a lifelong partnership."
+},
+{
+  "firstName": "Justin",
+  "lastName": "Harris",
+  "username": "jharris78",
+  "password": "holeinone2023",
+  "age": 29,
+  "gender": "male",
+  "genderInterest": "female",
+  "bio": "Golf is my true love. Seeking a partner who can challenge me on the course and share in the romance off the green."
+},
+{
+  "firstName": "Emily",
+  "lastName": "Baker",
+  "username": "ebaker92",
+  "password": "golfqueen123",
+  "age": 28,
+  "gender": "female",
+  "genderInterest": "male",
+  "bio": "Golf is my escape from reality. Looking for a partner who can share in the thrill of the game and the passion of romance."
+},
+{
+    "firstName": "Ethan",
+    "lastName": "Miles",
+    "username": "emiles_golf",
+    "password": "golfer123",
+    "age": 32,
+    "gender": "male",
+    "genderInterest": "female",
+    "bio": "A passionate golfer who loves spending time on the course. Hoping to find someone who shares my love of the game and can join me for a round or two."
+  },
+  {
+    "firstName": "Olivia",
+    "lastName": "Johnson",
+    "username": "oliviaj_golf",
+    "password": "golflover12",
+    "age": 29,
+    "gender": "female",
+    "genderInterest": "male",
+    "bio": "Golf is my ultimate passion, and I'm always on the lookout for a new partner to share in the fun. Let's tee off together!"
+  },
+  {
+    "firstName": "Jacob",
+    "lastName": "Ryder",
+    "username": "jryder_golf",
+    "password": "golfer567",
+    "age": 25,
+    "gender": "male",
+    "genderInterest": "female",
+    "bio": "I love spending my weekends out on the golf course, and I'm looking for a partner who can join me in the fun. Are you up for a game?"
+  },
+  {
+    "firstName": "Ava",
+    "lastName": "Baker",
+    "username": "avab_golfer",
+    "password": "golfchamp1",
+    "age": 27,
+    "gender": "female",
+    "genderInterest": "male",
+    "bio": "Golf is my favorite way to unwind after a long day, and I'd love to find someone who can share in the joy of the game with me. Let's hit the links!"
+  },
+  {
+    "firstName": "Nathan",
+    "lastName": "Reed",
+    "username": "nathanr_golf",
+    "password": "golfpro123",
+    "age": 33,
+    "gender": "male",
+    "genderInterest": "female",
+    "bio": "Golf has been my passion since I was a kid, and I'm looking for a partner who shares the same level of enthusiasm for the game. Let's tee up together!"
+  },
+  {
+    "firstName": "Emma",
+    "lastName": "Foster",
+    "username": "emmaf_golf",
+    "password": "golfgirl99",
+    "age": 28,
+    "gender": "female",
+    "genderInterest": "male",
+    "bio": "I've been playing golf since I was a kid, and I still can't get enough of it. Looking for a partner who can keep up with me on the course!"
+  },
+  {
+    "firstName": "Jack",
+    "lastName": "Harris",
+    "username": "jackh_golf",
+    "password": "golfing4life",
+    "age": 30,
+    "gender": "male",
+    "genderInterest": "female",
+    "bio": "Golf is my passion, and I'm always looking for someone to share in the joy of the game with me. Let's hit the links and see what we can do!"
   }
 ]

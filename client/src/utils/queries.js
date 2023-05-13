@@ -85,11 +85,36 @@ export const ALL_WOMEN = gql`
 export const ALL_MATCHES = gql`
 	query allMatches($userId: ID!) {
 		allMatches(userId: $userId) {
-				_id
-				firstName
-				lastName
-				bio
-			}
-		
+			_id
+			firstName
+			lastName
+			bio
+		}
+	}
+`;
+
+export const GET_RECEIVED_MESSAGES = gql`
+	query allReceivedMessages($userId: ID!) {
+		allReceivedMessages(userId: $userId) {
+			_id
+			messageSenderId
+			messageSenderName
+			messageRecipientId
+			messageRecipientName
+			messageBody
+			createdAt
+		}
+	}
+`;
+
+export const GET_SENT_MESSAGES = gql`
+	query allSentMessages($userId: ID!) {
+		allSentMessages(userId: $userId) {
+			_id
+			messageSenderId
+			messageRecipientId
+			messageBody
+			createdAt
+		}
 	}
 `;

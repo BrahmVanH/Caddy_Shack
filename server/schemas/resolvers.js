@@ -38,20 +38,15 @@ const resolvers = {
 			return users;
 		},
 		allMatches: async (parent, { userId }) => {
-			 createMatches = async () => {
-					const user = await User.findOne({ _id: userId })
-					const iLikeIds = user.iLike.map((id) =>
-						id.toString()
-					);
-					const likeMeIds = user.likeMe.map((id) =>
-						id.toString()
-					);
+			createMatches = async () => {
+				const user = await User.findOne({ _id: userId });
+				const iLikeIds = user.iLike.map((id) => id.toString());
+				const likeMeIds = user.likeMe.map((id) => id.toString());
 
-					return iLikeIds.filter((id) => likeMeIds.includes(id));
-
-				};
+				return iLikeIds.filter((id) => likeMeIds.includes(id));
+			};
 			const matchIds = await createMatches();
-			
+
 			if (!matchIds) {
 				throw new Error('Sorry, you have no matches.');
 			}
@@ -63,6 +58,22 @@ const resolvers = {
 			}
 			return matchUserProfiles;
 		},
+		allReceivedMessages: async (parent, { userId }) => {
+			const messages = await Message.find({ messageRecipientId: userId });
+			
+			
+			return messages;
+		},
+		allSentMessages: async (parent, { userId }) => {
+			const messages = await Message.find({ messageSenderId: userId });
+			
+			return messages;
+		},
+		getAllMessagesByAllUsers: async () => {
+			const messages = await Message.find();
+
+			return messages;
+		}
 	},
 	Mutation: {
 		createUser: async (
@@ -96,18 +107,15 @@ const resolvers = {
 		loginUser: async (parent, { username, password }) => {
 			const user = await User.findOne({ username });
 
-
 			if (!user) {
 				throw new AuthenticationError('No user found with that email!');
 			}
-
 
 			const correctPassword = await user.isCorrectPassword(password);
 
 			if (!correctPassword) {
 				throw new AuthenticationError('Incorrect password!');
 			}
-
 
 			const token = signToken(user);
 
@@ -172,17 +180,43 @@ const resolvers = {
 			return user;
 		},
 
-		createMessage: async (
+		sendMessage: async (
 			parent,
-			{ messageSenderId, messageRecipientId, messageBody }
+			{ messageSenderId, messageSenderName, messageRecipientId, messageRecipientName, messageBody }
 		) => {
 			console.log(`creating message: ${messageBody}`);
 			const message = await Message.create({
 				messageSenderId,
+				messageSenderName,
 				messageRecipientId,
+				messageRecipientName,
 				messageBody,
 			});
-			console.log(message);
+			const sender = await User.findOneAndUpdate(
+				{ _id: messageSenderId },
+				{ $addToSet: { messages: message._id } },
+				{
+					new: true,
+					runValidators: true,
+				}
+			);
+
+			if (!sender) {
+				throw new Error('no user found with that ID, try again');
+			}
+			const recipient = await User.findOneAndUpdate(
+				{ _id: messageRecipientId },
+				{ $addToSet: { messages: message._id } },
+				{
+					new: true,
+					runValidators: true,
+				}
+			);
+
+			if (!recipient) {
+				throw new Error('no user found with that ID, try again');
+			}
+
 			return message;
 		},
 
