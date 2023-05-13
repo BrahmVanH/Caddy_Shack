@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { useMutation, useQuery } from "@apollo/client";
-import { GET_ME } from "../utils/queries";
+import { useQuery } from "@apollo/client";
 
-import { CREATE_MESSAGE } from "../utils/mutations";
 import { GET_RECEIVED_MESSAGES, GET_SENT_MESSAGES } from '../utils/queries';
 
 import Auth from '../utils/auth';
@@ -23,71 +21,99 @@ function Message() {
     createdAt: '',
   })
 
-  const [allMessages, setAllMessages] = useState([{}]);
+  const [allReceivedMessages, setAllReceivedMessages] = useState([]);
 
-  const [allSentMessages, setAllSentMessages] = useState([{}]);
+  const [allSentMessages, setAllSentMessages] = useState([]);
+
+  const [displayedMessagePreviews, setDisplayedMessagePreviews] = useState([]);
 
 
-  const { loading, data } = useQuery(GET_RECEIVED_MESSAGES, {
+  const { loading, data: receivedData } = useQuery(GET_RECEIVED_MESSAGES, {
     variables: { userId: userId }
   });
 
-  console.log(data);
+  console.log(receivedData);
 
-  const { sentData } = useQuery(GET_SENT_MESSAGES, {
-    variables: { userId: userId}
+  const { data: sentData } = useQuery(GET_SENT_MESSAGES, {
+    variables: { userId: userId }
   });
 
-  useEffect(() => {
-   if (data && data.allReceivedMessages) {
-    setAllMessages(data.allReceivedMessages);
-   };
-  }, [data]);
+  console.log(sentData);
 
   useEffect(() => {
-    if (sentData && sentData.allSentMessages) {
-      setAllSentMessages(data.allSentMessages);
+   if (receivedData) {
+    setAllReceivedMessages(receivedData.allReceivedMessages);
+   };
+  }, [receivedData]);
+
+  useEffect(() => {
+    if (sentData) {
+      setAllSentMessages(sentData.allSentMessages);
     };
   }, [sentData]);
 
-  const handleMessageOpen = (event) => {
+  // const handleMessageOpen = async (message) => {
+
+  //   setOpenedMessage(message);
+  // }
+
+  const openInbox = async (event) => {
     event.preventDefault();
 
-    const selectedMessage = event.target;
+    setDisplayedMessagePreviews(allReceivedMessages);
+  }
 
-    setOpenedMessage({
-      
-    })
+  const openSentMail = async (event) => {
+    event.preventDefault();
+
+    setDisplayedMessagePreviews(allSentMessages);
   }
 
   
   return (
     
     <div>
-      <div className='p-5 d-flex justify-content-between'>
+      <div className='p-5 message-dashboard'>
         <div className='col-4 inbox'>
-        {Auth.loggedIn() ? (
           <div className='all-messages'>
-            <h4>Inbox</h4>
-              {allMessages.map((message) => (
-                <button className='message-preview' onClick={handleMessageOpen}>
-                <div className='row'>
-                  <div className="col-5">
-                <p>{message.messageSenderName}</p>
-                </div>
-                  <div className="col-3 date-stamp">
-                  <p>{message.createdAt}</p>
-                  </div>
-                </div>
-                <div className="bio d-flex">
-                <p>{message.messageBody}</p>
-                </div>
+              <div class="inbox-nav" role="group">
+                <button className="message-box-btn" 
+                type="button"
+                onClick={openInbox}
+                >
+                  Inbox
                 </button>
+                <button className="message-box-btn"
+                type="button"
+                onClick={openSentMail}
+                >
+                  Sent 
+                </button>
+                </div>
+                {Auth.loggedIn() ? (
+             
+            <div className="preview-container" >
+                {displayedMessagePreviews.map((message) => (
+                  <button className='message-preview' onClick={setOpenedMessage(message)}>
+                  <div className='row'>
+                    <div className="col-5">
+                  ```<span id='messageSenderName'>{message.messageSenderName}</span>
+                  ``</div>
+                    <div className="col-3 date-stamp">
+                    `<p>{message.createdAt}</p>
+                    </div>
+                  </div>
+                  <div className="bio d-flex">
+                  `<p id='messageBody'>{message.messageBody}</p>
+                  </div>
+                  </button>
                 ))}
-          </div>
+                </div>
             ) : (
               <div>you must be signed in to view your messages!</div>
             )}
+       <div className="inbox-footer"></div>
+          </div>
        </div>
        <div className="col-7 opened-message">
         <div>
@@ -102,118 +128,7 @@ function Message() {
         </div>
        </div>
       </div>
-  
-  // const handlePreviewClick = async (event) => {
-  //   event.preventDefault();
-    
-  //   const selectedMessage = event.target.message;
-    
-  //   return selectedMessage;
-  //   // query to get individual message
-  // }
-  
-  // useEffect(() => {
-  //   setOpenedMessage(handlePreviewClick)
-  // }, [handlePreviewClick]);
-
-
-  // const [messageBody, setMessageBody] = useState({
-  //   messageBody: ''
-  // });
-
-  // const [messageSenderId, setMessageSenderId] = useState({ 
-  //   messageSederId: '' });
-  // const [messageRecipientId, setMessageRecipientId] = useState({ 
-  //   messageRecipientId: '' });
-
-  // useEffect(() => {
-  //   setMessageSenderId(getUser.user._id);
-  // }, [getUser]);
-
-  // const handleInputChange = (event) => {
-	// 	const { name, value } = event.target;
-	// 	setMessageBody({ messageBody, [name]: value });
-	// };
-
-  // const [getUser] = useQuery(GET_ME, {
-  //   variables: { userId: Auth.getProfile().data._id },
-  // });
-
-  
-  // const [createMessage] = useMutation(CREATE_MESSAGE);
-
-  // const handleMessageSend = async (event) => {
-  //   event.preventDefault();
-
-  //   	const form = event.currentTarget;
-	// 	if (form.checkValidity() === false) {
-	// 		event.preventDefault();
-	// 		event.stopPropagation();
-	// 	}
-
-  //   const { data } = userQuery(GET_ME, {
-  //     variables: { userId: Auth.getProfile().data._id },
-  //   });
-
-  //   const userId = data?.user._id
-
-  //   try {
-  //     const { data } = await createMessage({
-  //       variables: {
-  //         messageSenderId: userId,
-  //         messageRecipientId: likedUserId,
-  //         messageBody: messageBody
-  //       },
-  //     });
-  //   } catch (err) {
-  //     console.error(err);
-	// 		setShowAlert(true);
-  //   }
-  // }
-
-  // const createMessageBodyPreview = (messageBody) => {
-  //   const bodyPreview = messageBody.slice(0,16).concat('...');
-
-  //   return bodyPreview;
-
-  
-
-
-
   );
-
-  //Need to add a way to import likedUsers
-  // Click on liked users to send message 
-  // 
-
-  // return (
-  //   <div>
-  //     <div className="chatbox">
-  //       <div className="chats">
-          
-  //       </div>
-  //     </div>
-
-  //     <div className="myContainer">
-  //       <div className="input-group mb-3 textArea">
-  //         <input
-  //           type="text"
-  //           className="form-control text-input"
-  //           placeholder="Your Message Here"
-  //           aria-label="Recipient's username"
-  //           aria-describedby="button-addon2"
-  //         />
-  //         <button
-  //           className="btn btn-secondary btn-outline-secondary myBtn"
-  //           type="button"
-  //           id="button-addon2"
-  //         >
-  //           Send
-  //         </button>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 }
 
 export default Message;
