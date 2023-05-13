@@ -7,37 +7,34 @@ db.once('open', async () => {
 
 	const users = await User.find();
 
-
-	const getRandomSenderId = (users) => {
+	const getRandomSender = (users) => {
 		randomIndex = Math.floor(Math.random() * users.length);
-		randomSender = users[randomIndex]._id;
+		randomSender = users[randomIndex];
 		return randomSender;
 	};
 
-	const getRandomReceiverId = (users) => {
+	const getRandomRecipient = (users) => {
 		randomIndex = Math.floor(Math.random() * users.length);
-		randomReceiverId = users[randomIndex]._id;
-		return randomReceiverId;
+		randomReceiver = users[randomIndex];
+		return randomReceiver;
 	};
 	const createSeedMessages = async (messageBody) => {
-		console.log('creatings seed message...');
+		console.log('creating seed message...');
 
-		const randomSenderId = getRandomSenderId(users);
+		const randomSender = getRandomSender(users);
 
-		console.log(randomSenderId);
-
-		const randomReceiverId = getRandomReceiverId(users);
-		console.log(randomReceiverId);
+		const randomRecipient = getRandomRecipient(users);
 
 		const message = await Message.create({
-			messageSenderId: randomSenderId,
-			messageRecipientId: randomReceiverId,
+			messageSenderId: randomSender._id,
+			messageSenderName: randomSender.firstName,
+			messageRecipientId: randomRecipient._id,
+			messageRecipientName: randomRecipient.firstName,
 			messageBody: messageBody,
 		});
 
-		console.log(message);
 		const sender = await User.findOneAndUpdate(
-			{ _id: randomSenderId },
+			{ _id: randomSender._id },
 			{ $addToSet: { messages: message._id } },
 			{
 				new: true,
@@ -49,7 +46,7 @@ db.once('open', async () => {
 			throw new Error('no user found with that ID, try again');
 		}
 		const recipient = await User.findOneAndUpdate(
-			{ _id: randomRecipientId },
+			{ _id: randomReceiver._id },
 			{ $addToSet: { messages: message._id } },
 			{
 				new: true,
@@ -63,14 +60,14 @@ db.once('open', async () => {
 	};
 
 	try {
-
-    for (let i = 0; i < 25; i++){ 
-		const messageBody = messageSeeds[i].messageBody;
-			console.log(`creating seed message with ${messageBody}`);
+		for (let i = 0; i < users.length; i++) {
+			const messageBody = messageSeeds[i].messageBody;
+			console.log(`created ${i}th message`);
 			createSeedMessages(messageBody);
 		}
 	} catch (err) {
 		console.log('something went wrong while creatingSeedMessages');
 		console.error(err);
 	}
+
 });

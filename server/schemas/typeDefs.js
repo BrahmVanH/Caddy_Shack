@@ -31,14 +31,18 @@ const typeDefs = gql`
 	type Message {
 		_id: ID!
 		messageSenderId: ID!
+		messageSenderName: String!
 		messageRecipientId: ID!
+		messageRecipientName: String!
 		messageBody: String!
 		createdAt: String!
 	}
 
 	input MessageInput {
 		messageSenderId: ID!
+		messageSenderName: String!
 		messageRecipientId: ID!
+		messageRecipientName: String!
 		messageBody: String!
 		createdAt: String!
 	}
@@ -51,7 +55,6 @@ const typeDefs = gql`
 		token: ID!
 		user: User
 	}
-
 
 	type Query {
 		getUser(userId: ID!): User
@@ -81,11 +84,12 @@ const typeDefs = gql`
 		deleteUser(userId: ID!, password: String!): Auth
 		sendMessage(
 			messageSenderId: ID!
+			messageSenderName: String!
 			messageRecipientId: ID!
+			messageRecipientName: String!
 			messageBody: String!
 		): Message
 		deleteMessage(userId: ID!, messageId: ID!): Message
-		
 	}
 `;
 

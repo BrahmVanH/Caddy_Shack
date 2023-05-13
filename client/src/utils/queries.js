@@ -98,21 +98,23 @@ export const GET_RECEIVED_MESSAGES = gql`
 		allReceivedMessages(userId: $userId) {
 			_id
 			messageSenderId
+			messageSenderName
 			messageRecipientId
+			messageRecipientName
 			messageBody
 			createdAt
 		}
 	}
 `;
 
-// export const GET_SENT_MESSAGES = gql`
-// 	query allSentMessages($userId: ID!) {
-// 		allSentMessages(userId: $userId) {
-// 			_id
-// 			messageSenderId
-// 			messageRecipientId
-// 			messageBody
-// 			createdAt
-// 		}
-// 	}
-// `;
+export const GET_SENT_MESSAGES = gql`
+	query allSentMessages($userId: ID!) {
+		allSentMessages(userId: $userId) {
+			_id
+			messageSenderId
+			messageRecipientId
+			messageBody
+			createdAt
+		}
+	}
+`;

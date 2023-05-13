@@ -182,12 +182,14 @@ const resolvers = {
 
 		sendMessage: async (
 			parent,
-			{ messageSenderId, messageRecipientId, messageBody }
+			{ messageSenderId, messageSenderName, messageRecipientId, messageRecipientName, messageBody }
 		) => {
 			console.log(`creating message: ${messageBody}`);
 			const message = await Message.create({
 				messageSenderId,
+				messageSenderName,
 				messageRecipientId,
+				messageRecipientName,
 				messageBody,
 			});
 			const sender = await User.findOneAndUpdate(

@@ -12,17 +12,30 @@ import "./assets/css/message.css";
 
 function Message() {
 
+  const userId = Auth.getProfile().data._id;
+
   const [openedMessage, setOpenedMessage] = useState({
-    messageSender: '',
-    messageRecipient: '',
+    messageSenderId: '',
+    messageSenderName: '',
+    messageRecipientId: '',
+    messageRecipientName: '',
     messageBody: '',
     createdAt: '',
   })
 
   const [allMessages, setAllMessages] = useState([{}]);
 
+  const [allSentMessages, setAllSentMessages] = useState([{}]);
+
+
   const { loading, data } = useQuery(GET_RECEIVED_MESSAGES, {
-    variables: { userId: Auth.getProfile().data._id }
+    variables: { userId: userId }
+  });
+
+  console.log(data);
+
+  const { sentData } = useQuery(GET_SENT_MESSAGES, {
+    variables: { userId: userId}
   });
 
   useEffect(() => {
@@ -31,6 +44,64 @@ function Message() {
    };
   }, [data]);
 
+  useEffect(() => {
+    if (sentData && sentData.allSentMessages) {
+      setAllSentMessages(data.allSentMessages);
+    };
+  }, [sentData]);
+
+  const handleMessageOpen = (event) => {
+    event.preventDefault();
+
+    const selectedMessage = event.target;
+
+    setOpenedMessage({
+      
+    })
+  }
+
+  
+  return (
+    
+    <div>
+      <div className='p-5 d-flex justify-content-between'>
+        <div className='col-4 inbox'>
+        {Auth.loggedIn() ? (
+          <div className='all-messages'>
+            <h4>Inbox</h4>
+              {allMessages.map((message) => (
+                <button className='message-preview' onClick={handleMessageOpen}>
+                <div className='row'>
+                  <div className="col-5">
+                <p>{message.messageSenderName}</p>
+                </div>
+                  <div className="col-3 date-stamp">
+                  <p>{message.createdAt}</p>
+                  </div>
+                </div>
+                <div className="bio d-flex">
+                <p>{message.messageBody}</p>
+                </div>
+                </button>
+                ))}
+          </div>
+            ) : (
+              <div>you must be signed in to view your messages!</div>
+            )}
+       </div>
+       <div className="col-7 opened-message">
+        <div>
+          <div className="viewed-message">
+             <h4>{openedMessage.messageSenderName}</h4>
+                <p>{openedMessage.messageBody}</p>
+                <div className="col-2 date-stamp">
+                <p>{openedMessage.createdAt}</p>
+                </div>
+                </div>
+            </div>
+        </div>
+       </div>
+      </div>
   
   // const handlePreviewClick = async (event) => {
   //   event.preventDefault();
@@ -107,30 +178,6 @@ function Message() {
 
   
 
-  
-  return (
-    
-    <div>
-      <div className='container'>
-        <div className='col-2 inbox'>
-        {Auth.loggedIn() ? (
-          <div className='allMessages'>
-              {allMessages.map((message) => (
-                // <button onClick={handlePreviewClick}>
-                <div className='message-preview'>
-                <h2>{message.sender}</h2>
-                <p>{message.messageBody}</p>
-                <p>{message.createdAt}</p>
-                </div>
-                // </button>
-                ))}
-          </div>
-            ) : (
-              <div>you must be signed in to view your messages!</div>
-            )}
-       </div>
-      </div>
-    </div>
 
 
   );
