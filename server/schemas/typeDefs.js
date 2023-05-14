@@ -11,7 +11,8 @@ const typeDefs = gql`
 		gender: String
 		genderInterest: String
 		bio: String
-		likedUsers: [User]
+		iLike: [User]
+		likeMe: [User]
 		messages: [Message]
 	}
 
@@ -30,16 +31,24 @@ const typeDefs = gql`
 	type Message {
 		_id: ID!
 		messageSenderId: ID!
+		messageSenderName: String!
 		messageRecipientId: ID!
+		messageRecipientName: String!
 		messageBody: String!
 		createdAt: String!
 	}
 
 	input MessageInput {
 		messageSenderId: ID!
+		messageSenderName: String!
 		messageRecipientId: ID!
+		messageRecipientName: String!
 		messageBody: String!
 		createdAt: String!
+	}
+
+	type MatchId {
+		matchId: ID
 	}
 
 	type Auth {
@@ -48,18 +57,21 @@ const typeDefs = gql`
 	}
 
 	type Query {
-		# user(username: String!): User
-		# allFemaleUsers
 		getUser(userId: ID!): User
+
 		possibleMatches: [User]
+
 		allUsers: [User]
 		allMen: [User]!
 		allWomen: [User]!
-		allMatches: [User]!
+		allMatches(userId: ID!): [User]!
+		allReceivedMessages(userId: ID!): [Message]!
+		allSentMessages(userId: ID!): [Message]!
+		getAllMessagesByAllUsers: [Message]!
 	}
 
 	type Mutation {
-		addLikedUser(userId: ID!, likedUserId: ID!): User
+		likeUser(userId: ID!, likedUserId: ID!): User
 		removeLikedUser(UserId: ID!, likedUserId: ID!): User
 		createUser(
 			firstName: String!
@@ -73,9 +85,11 @@ const typeDefs = gql`
 		): Auth
 		loginUser(username: String!, password: String!): Auth
 		deleteUser(userId: ID!, password: String!): Auth
-		createMessage(
+		sendMessage(
 			messageSenderId: ID!
+			messageSenderName: String!
 			messageRecipientId: ID!
+			messageRecipientName: String!
 			messageBody: String!
 		): Message
 		deleteMessage(userId: ID!, messageId: ID!): Message

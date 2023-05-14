@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink} from '@apollo/client';
 import Home from './Pages/Home';
 import Match from './Pages/Match';
-// import Message from './Pages/Message';
+import Message from './Pages/Message';
 import NotFound from './Pages/NotFound';
 import Profile from './Pages/Profile';
 import Login from './Pages/Login';
@@ -14,6 +14,7 @@ import Matching from './Pages/Matching';
 import { setContext } from "@apollo/client/link/context";
 
 import './App.css';
+
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -31,6 +32,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
+
   cache: new InMemoryCache(),
 });
 
@@ -51,10 +53,10 @@ function App() {
               path="/match" 
               element={<Match />}
             />
-            {/* <Route 
+            <Route 
               path="/message" 
               element={<Message />}
-            /> */}
+            />
             <Route 
               path="/profile" 
               element={<Profile />}

@@ -1,9 +1,8 @@
-import React from "react";
-import { useQuery, gql } from "@apollo/client";
 import gopher from "../../assets/img/gopher.png";
 import "../Matching/potential.css";
 import { Link } from "react-router-dom";
 import Auth from "../../../utils/auth"
+
 
 const GET_INTEREST = gql`
   query
@@ -27,7 +26,10 @@ function PotentialMatch() {
     return <div>There was an error loading your matches: {error.message}</div>;
   }
 
+
+function PotentialMatch() {
   return (
+
     
 <div className="matchCards">
 {data.possibleMatches.map((match) => (
@@ -43,13 +45,13 @@ function PotentialMatch() {
               </span>
         </Link>
             <span href="/" className="btn btn-danger myBtn">
+
               No
-            </span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-) )}
-</div>
   );
 }
 

@@ -13,7 +13,7 @@ const resolvers = {
 
 			return foundUser;
 		},
-	
+
 		allUsers: async () => {
 			const allUsers = await User.find({});
 			console.log(allUsers);
@@ -37,13 +37,39 @@ const resolvers = {
 			}
 			return users;
 		},
-		allMatches: async () => {
-			const matches = await User.find({ saidYesTo: { $ne: [] } });
-			if (!matches) {
-				throw new Error('Sorry! You have no matches.');
+		allMatches: async (parent, { userId }) => {
+			createMatches = async () => {
+				const user = await User.findOne({ _id: userId });
+				const iLikeIds = user.iLike.map((id) => id.toString());
+				const likeMeIds = user.likeMe.map((id) => id.toString());
+
+				return iLikeIds.filter((id) => likeMeIds.includes(id));
+			};
+			const matchIds = await createMatches();
+
+			if (!matchIds) {
+				throw new Error('Sorry, you have no matches.');
 			}
-			return matches;
+			matchUserProfiles = [];
+
+			for (const id of matchIds) {
+				const user = await User.findOne({ _id: id });
+				matchUserProfiles.push(user);
+			}
+			return matchUserProfiles;
 		},
+		allReceivedMessages: async (parent, { userId }) => {
+			const messages = await Message.find({ messageRecipientId: userId });
+			
+			
+			return messages;
+		},
+		allSentMessages: async (parent, { userId }) => {
+			const messages = await Message.find({ messageSenderId: userId });
+			
+			return messages;
+		},
+
 		possibleMatches: async (parent, args) => {
 			if (!args) {
 				throw new AuthenticationError("No logged in user. You must be logged in.")
@@ -56,6 +82,13 @@ const resolvers = {
 				throw new Error('Sorry! You have no matches.');
 			}
 			return matches;
+
+		getAllMessagesByAllUsers: async () => {
+			const messages = await Message.find();
+
+			return messages;
+		}
+
 	},
 },
 	Mutation: {
@@ -84,7 +117,6 @@ const resolvers = {
 			});
 
 			const token = signToken(newUser);
-			console.log(`signing token with ${newUser} info...`);
 
 			return { token, newUser };
 		},
@@ -123,21 +155,36 @@ const resolvers = {
 			return { token, newUser };
 		},
 
-		addLikedUser: async (parent, { userId, likedUserId }) => {
+		likeUser: async (parent, { userId, likedUserId }) => {
 			const user = await User.findOneAndUpdate(
 				{ _id: userId },
-				{ $addToSet: { likedUsers: likedUserId } },
+				{ $addToSet: { iLike: likedUserId } },
 				{
 					new: true,
 					runValidators: true,
 				}
 			);
-			if (!userId) {
+
+			if (!user) {
 				throw new Error(
 					'Could not retrieve user-data, please refresh and try again.'
 				);
 			}
 
+			const likedUser = await User.findOneAndUpdate(
+				{ _id: likedUserId },
+				{ $addToSet: { likeMe: userId } },
+				{
+					new: true,
+					runValidators: true,
+				}
+			);
+
+			if (!likedUser) {
+				throw new Error(
+					'Could not retrieve user-data, please refresh and try again.'
+				);
+			}
 			return user;
 		},
 
@@ -149,17 +196,43 @@ const resolvers = {
 			return user;
 		},
 
-		createMessage: async (
+		sendMessage: async (
 			parent,
-			{ messageSenderId, messageRecipientId, messageBody }
+			{ messageSenderId, messageSenderName, messageRecipientId, messageRecipientName, messageBody }
 		) => {
 			console.log(`creating message: ${messageBody}`);
 			const message = await Message.create({
 				messageSenderId,
+				messageSenderName,
 				messageRecipientId,
+				messageRecipientName,
 				messageBody,
 			});
-			console.log(message);
+			const sender = await User.findOneAndUpdate(
+				{ _id: messageSenderId },
+				{ $addToSet: { messages: message._id } },
+				{
+					new: true,
+					runValidators: true,
+				}
+			);
+
+			if (!sender) {
+				throw new Error('no user found with that ID, try again');
+			}
+			const recipient = await User.findOneAndUpdate(
+				{ _id: messageRecipientId },
+				{ $addToSet: { messages: message._id } },
+				{
+					new: true,
+					runValidators: true,
+				}
+			);
+
+			if (!recipient) {
+				throw new Error('no user found with that ID, try again');
+			}
+
 			return message;
 		},
 

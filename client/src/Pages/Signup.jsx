@@ -43,7 +43,6 @@ export default function Signup() {
 
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
-		console.log(userFormData);
 
 		const form = event.currentTarget;
 		if (form.checkValidity() === false) {
@@ -53,23 +52,13 @@ export default function Signup() {
 
 		try {
 			const userAge = parseInt(userFormData.age, 10);
-			console.log(userAge);
 			const { data } = await createUser({
 				variables: {
-					firstName: userFormData.firstName,
-					lastName: userFormData.lastName,
-					username: userFormData.username,
-					password: userFormData.password,
-					age: userAge,
-					gender: userFormData.gender,
-					genderInterest: userFormData.genderInterest,
-					bio: userFormData.bio,
+					...userFormData, age: userAge,
 				},
 				
-				// ...userFormData, age: userAge,
+				
 			});
-			console.log(data);
-			console.log(userFormData);
 			// Stores user token in localStorage 
 			Auth.login(data.createUser.token);
 			window.location.assign('/profile')

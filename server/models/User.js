@@ -35,7 +35,13 @@ const userSchema = new Schema(
 			type: String,
 			maxlength: 500,
 		},
-		likedUsers: [
+		iLike: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'User',
+			},
+		],
+		likeMe: [
 			{
 				type: Schema.Types.ObjectId,
 				ref: 'User',
@@ -69,7 +75,6 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
 	return bcrypt.compare(password, this.password);
 };
-
 
 
 

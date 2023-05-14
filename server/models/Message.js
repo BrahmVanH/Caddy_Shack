@@ -7,8 +7,16 @@ const messageSchema = new Schema(
 			type: Schema.Types.ObjectId,
 			required: true,
 		},
+		messageSenderName: {
+			type: String,
+			required: true,
+		},
 		messageRecipientId: {
 			type: Schema.Types.ObjectId,
+			required: true,
+		},
+		messageRecipientName: {
+			type: String,
 			required: true,
 		},
 		messageBody: {

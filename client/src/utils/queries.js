@@ -26,16 +26,14 @@ export const GET_ME = gql`
 	}
 `;
 
-// 
-
 export const ALL_USERS = gql`
 	query allUsers {
 		allUsers {
 			firstName
 			lastName
-			username
 			age
 			gender
+			username
 			bio
 			genderInterest
 			messages {
@@ -89,6 +87,43 @@ export const ALL_WOMEN = gql`
 				messageRecipient
 				messageSender
 			}
+		}
+	}
+`;
+
+export const ALL_MATCHES = gql`
+	query allMatches($userId: ID!) {
+		allMatches(userId: $userId) {
+			_id
+			firstName
+			lastName
+			bio
+		}
+	}
+`;
+
+export const GET_RECEIVED_MESSAGES = gql`
+	query allReceivedMessages($userId: ID!) {
+		allReceivedMessages(userId: $userId) {
+			_id
+			messageSenderId
+			messageSenderName
+			messageRecipientId
+			messageRecipientName
+			messageBody
+			createdAt
+		}
+	}
+`;
+
+export const GET_SENT_MESSAGES = gql`
+	query allSentMessages($userId: ID!) {
+		allSentMessages(userId: $userId) {
+			_id
+			messageSenderId
+			messageRecipientId
+			messageBody
+			createdAt
 		}
 	}
 `;

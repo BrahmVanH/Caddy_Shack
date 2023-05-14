@@ -1,44 +1,88 @@
-.chatbox {
+.message-dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.all-messages {
   border: solid;
-  margin: 40px;
-  padding: 20px;
-  border-radius: 25px;
-  background: lightblue;
+  border-radius: 20px;
+  background: rgba(164, 166, 168, 0.3);
+  height: 80vh;
+  margin: .5rem;
 }
 
-.chats {
-  margin: 20px;
+.inbox-nav {
+  background-color: black;;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
 }
 
-.myBtn {
-    color: white;
+.inbox-footer {
+  background-color: black;
+    ;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 1rem;
 }
-.myContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 50px;
-    
-    
-  }
+.message-box-btn {
+  margin-left: 1rem;
+  margin-bottom: 5px;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 5px;
+
+}
+
+.preview-container {
+  border: solid .05px rgb(0, 0, 0, 0.5);
+  height: 90%;
+  width: 100%;
+  padding: 0.5rem;
+  background: rgba(164, 166, 168, 0.3);
+
+}
+
+.message-preview {
   
+  border: solid 0.5px black;
+  margin: 10px 0px;
+  border-radius: 10px;
+  max-height: 18%;
+  text-align: start;
+  padding: 5px 10px;
+  margin: .5rem;
+}
+
+#messageBody {
+  max-width: 80%;
+}
+
+#messageSenderName {
+  font-size: 1.5rem;
+}
+
+.date-stamp {
+  font-size: 0.6rem;
+  text-align: end;
+}
+
+.opened-message {
+  border: solid;
+    border-radius: 20px;
+    background: rgba(164, 166, 168, 0.3);
+    padding: 1rem;
+    height: 80vh;
+}
+
+.row {
+  justify-content: space-between;
+}
 
 
-  .text-input {
-    width: 100%;
-  }
+
+
   
-  @media screen and (min-width: 768px) {
-    .text-input {
-      width: 50%;
-      flex: 0 0 50%;
-    }
-  }
-  
-  @media screen and (max-width: 767px) {
-    .text-input {
-      width: 100%;
-      flex: 0 0 33.333%;
-    }
-  }
   
