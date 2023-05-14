@@ -72,5 +72,5 @@ db.once('open', async () => {
 
 	setTimeout(() => {
 		process.exit(0);
-	}, '8000');
+	}, '5000');
 });
