@@ -47,7 +47,7 @@ function PotentialMatch() {
             <span href="/" className="btn btn-danger myBtn">
 
               No
-            </a>
+            </span>
           </div>
         </div>
       </div>
