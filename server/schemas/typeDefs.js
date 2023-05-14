@@ -58,6 +58,9 @@ const typeDefs = gql`
 
 	type Query {
 		getUser(userId: ID!): User
+
+		possibleMatches: [User]
+
 		allUsers: [User]
 		allMen: [User]!
 		allWomen: [User]!

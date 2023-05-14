@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink} from '@apollo/client';
 import Home from './Pages/Home';
 import Match from './Pages/Match';
 import Message from './Pages/Message';
@@ -11,13 +11,32 @@ import Signup from "./Pages/Signup";
 import Navbar from "./Pages/components/Navbar/Navbar"
 import Footer from "./Pages/components/Footer/Footer"
 import Matching from './Pages/Matching';
+import { setContext } from "@apollo/client/link/context";
 
 import './App.css';
 
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 const client = new ApolloClient({
-  uri: 'http://localhost:3001/graphql',
+  link: authLink.concat(httpLink),
+
   cache: new InMemoryCache(),
 });
+
+//adds auth header check previous projects
 
 function App() {
   return (

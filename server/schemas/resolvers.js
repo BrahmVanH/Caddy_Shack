@@ -69,12 +69,28 @@ const resolvers = {
 			
 			return messages;
 		},
+
+		possibleMatches: async (parent, args) => {
+			if (!args) {
+				throw new AuthenticationError("No logged in user. You must be logged in.")
+				
+			} 
+			const loggedInUser = await User.find({ _id: args.userId } );
+			const matches = await User.find( {gender: loggedInUser.genderInterest} );
+			console.log(matches)
+			if (!matches) {
+				throw new Error('Sorry! You have no matches.');
+			}
+			return matches;
+
 		getAllMessagesByAllUsers: async () => {
 			const messages = await Message.find();
 
 			return messages;
 		}
+
 	},
+},
 	Mutation: {
 		createUser: async (
 			parent,
@@ -228,6 +244,7 @@ const resolvers = {
 			return message;
 		},
 	},
+  
 };
 
 module.exports = resolvers;
