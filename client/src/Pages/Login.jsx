@@ -29,11 +29,11 @@ export default function Login() {
 	};
 
 
-	const handleSignupBtnClick = async (event) => {
-		event.preventDefault();
+	// const handleSignupBtnClick = async (event) => {
+	// 	event.preventDefault();
 
-		window.location.replace('/signup');
-	}
+	// 	window.location.replace('/signup');
+	// }
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 
@@ -134,9 +134,9 @@ export default function Login() {
 										Login
 							</Button>
 				
-              <Button className='btn d-block login-buttons' onClick={handleSignupBtnClick} type='button'>
+              <Link className='btn d-block login-buttons' to='/signup' >
                 Sign Up
-                </Button>
+                </Link>
                 
 						</div>
 					</Form>

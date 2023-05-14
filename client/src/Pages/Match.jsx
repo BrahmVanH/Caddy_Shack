@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 import { useQuery } from "@apollo/client";
 import { ALL_MATCHES } from '../utils/queries';
@@ -36,9 +37,9 @@ function Match() {
             <div className="card-body">
               <h5 className="card-title">{match.username}</h5>
               <p className="card-text">{match.bio}</p>
-              <a href="/message" className="btn btn-primary">
+              <Link to="/message" className="btn btn-primary">
                 Message User
-              </a>
+              </Link>
             </div>
           </div>
         </div>

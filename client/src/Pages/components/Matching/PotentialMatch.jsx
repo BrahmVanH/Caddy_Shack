@@ -27,7 +27,7 @@ function PotentialMatch() {
   if (error) {
     return <div>There was an error loading your matches: {error.message}</div>;
   }
-
+// Need to add buttons to like or swipe user
 
 return (
     <div>
@@ -37,14 +37,17 @@ return (
           <div className="card-body">
             <h5 className="card-title">User Name</h5>
             <p className="card-text">User's Bio</p>
-            <Link to="/">
-              <a href="/" className="btn btn-success myBtn">
+           
+              <span className="btn btn-success myBtn">
                 YES
-              </a>
-            </Link>
-            <a href="/" className="btn btn-danger myBtn">
+              </span>
+            
+
+            <span className="btn btn-danger myBtn">
               No
-            </a>
+            </span>
+            
+
           </div>
         </div>
       </div>
