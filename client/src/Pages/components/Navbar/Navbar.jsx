@@ -11,9 +11,9 @@ function Navbar() {
     <div>
      <nav className="myNavbar navbar navbar-expand-md" >
         <div className="container">
-        <a className="navbar-brand d-flex align-items-center" href="/">
+        <Link className="navbar-brand d-flex align-items-center" to="/">
           <img src={logo} alt="" width="75px" />
-        </a>
+        </Link>
           <button
             data-bs-toggle="collapse"
             className="navbar-toggler"
@@ -31,18 +31,18 @@ function Navbar() {
             </ul>
             {Auth.loggedIn() ? (
               <>
-              <a className="loginBtn btn ms-md-2" role="button" href="/profile">
+              <Link className="loginBtn btn ms-md-2" role="button" to="/profile">
               Profile
-              </a>  
-              <a className="messagesBtn btn ms-md-2" role="button" href="/message">
+              </Link>  
+              <Link className="messagesBtn btn ms-md-2" role="button" to="/message">
               Messages
-              </a>  
+              </Link>  
               <button className="logoutBtn btn ms-md-2" role="button" onClick={Auth.logout}>
                 Logout
               </button>
               </>
             ) : (
-              <Link className="loginBtn btn ms-md-2" role="button" href="/login">
+              <Link className="loginBtn btn ms-md-2" role="button" to="/login">
                 Login/Sign Up
               </Link>
             )}
