@@ -14,6 +14,15 @@ export const GET_ME = gql`
 			iLike
 			likeMe
 		}
+		getMatches(gender: $genderInterest) {
+			_id
+			firstName
+			lastName
+			username
+			age
+			gender
+			bio
+    }
 	}
 `;
 
