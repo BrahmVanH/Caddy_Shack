@@ -16,7 +16,6 @@ const resolvers = {
 
 		allUsers: async () => {
 			const allUsers = await User.find({});
-			console.log(allUsers);
 			if (!allUsers) {
 				throw new Error('Something went wrong');
 			}
@@ -200,7 +199,6 @@ const resolvers = {
 			parent,
 			{ messageSenderId, messageSenderName, messageRecipientId, messageRecipientName, messageBody }
 		) => {
-			console.log(`creating message: ${messageBody}`);
 			const message = await Message.create({
 				messageSenderId,
 				messageSenderName,

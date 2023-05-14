@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Form, Button, Alert } from 'react-bootstrap';
 import { useMessageContext } from '../../utils/MessageContext';
 import {
 	SET_RECEIVED_MESSAGES,
@@ -7,18 +8,23 @@ import {
 	SET_DISPLAYED_MESSAGES,
 	SET_USER_ID,
 } from '../../utils/actions';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import MessagePreview from './MessagePreview';
 
 import { GET_RECEIVED_MESSAGES, GET_SENT_MESSAGES } from '../../utils/queries';
+import { SEND_MESSAGE } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
 import '../../assets/css/message.css';
 
 function Message() {
+	const [validated] = useState(false);
+	
+	const [showAlert, setShowAlert] = useState(false);
+	
+	const [sendMessage] = useMutation(SEND_MESSAGE)
 	const [state, dispatch] = useMessageContext();
-
 	const {
 		userId,
 		allReceivedMessages,
@@ -26,18 +32,12 @@ function Message() {
 		displayedMessagePreviews,
 		openedMessage,
 	} = state;
-
+	
 	const receivedMessages = useQuery(GET_RECEIVED_MESSAGES, {
 		variables: { userId: userId },
 	});
 
-	console.log(receivedMessages.data);
-
-	const sentMessages = useQuery(GET_SENT_MESSAGES, {
-		variables: { userId: userId },
-	});
-
-	console.log(sentMessages.data);
+	
 
 	useEffect(() => {
 		if (Auth.getProfile().data._id) {
@@ -47,6 +47,12 @@ function Message() {
 			});
 		}
 	}, [dispatch]);
+
+	const sentMessages = useQuery(GET_SENT_MESSAGES, {
+		variables: { userId: userId },
+	});
+
+
 
 	useEffect(() => {
 		if (receivedMessages.data) {
@@ -62,6 +68,8 @@ function Message() {
 			});
 		}
 	}, [receivedMessages.data, receivedMessages.loading, allReceivedMessages]);
+
+
 
 	const renderReceivedMessages = async (event) => {
 		event.preventDefault();
@@ -95,6 +103,57 @@ function Message() {
 		}
 	};
 
+	const [responseMessageBody, setResponseMessageBody] = useState({
+		messageBody: '',
+
+
+	})
+	
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setResponseMessageBody({ ...responseMessageBody, [name]: value });
+	};
+
+	const handleFormSubmit = async (event) => {
+		event.preventDefault();
+
+		const form = event.currentTarget;
+		if (form.checkValidity() === false) {
+			event.preventDefault();
+			event.stopPropagation();
+		}
+		if (!responseMessageBody) {
+			throw new Error('You must fill out message body to send a message!');
+		}
+
+		try {
+			const { data } = await sendMessage({
+				variables: {
+					messageSenderId: state.openedMessage.messageRecipientId,
+					messageSenderName: state.openedMessage.messageRecipientName, 
+					messageRecipientId:  state.openedMessage.messageSenderId,
+					messageRecipientName: state.openedMessage.messageSenderName,
+					messageBody: responseMessageBody.messageBody,
+
+				}
+			})
+		} catch (err) {
+			console.error(err);
+			setShowAlert(true);
+		}
+
+		setResponseMessageBody({
+			messageBody: ''
+		});
+
+	}
+
+	useEffect(() => {
+		setResponseMessageBody({
+			messageBody: '',
+		});
+	}, [openedMessage]);
+
 	return (
 		<div>
 			<div className='p-5 message-dashboard'>
@@ -121,6 +180,9 @@ function Message() {
 										key={message._id}
 										_id={message._id}
 										messageSenderName={message.messageSenderName}
+										messageSenderId={message.messageSenderId}
+										messageRecipientId={message.messageRecipientId}
+										messageRecipientName={message.messageRecipientName}
 										messageBody={message.messageBody}
 										createdAt={message.createdAt}
 									/>
@@ -147,6 +209,38 @@ function Message() {
 							<div className='col-2 date-stamp'>
 								<p>{openedMessage.createdAt}</p>
 							</div>
+							{state.messageOpen ? (
+								<Form className='form responseField'>
+									<Alert
+										dismissible
+										onClose={() => setShowAlert(false)}
+										show={showAlert}
+										variant='danger'>
+										You must enter a message before sending!
+									</Alert>
+									<Form.Group className='m-5'>
+										<Form.Control
+											type='textarea'
+											placeholder='message'
+											name='messageBody'
+											onChange={handleInputChange}
+											value={responseMessageBody.messageBody}
+										/>
+
+										<Form.Control.Feedback type='invalid'>
+											Message is required!
+										</Form.Control.Feedback>
+									</Form.Group>
+									<Button
+										onClick={handleFormSubmit}
+										className='btn d-block login-buttons'
+										type='submit'>
+										Send Message
+									</Button>
+								</Form>
+							) : (
+								<div></div>
+							)}
 						</div>
 					</div>
 				</div>

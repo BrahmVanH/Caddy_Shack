@@ -10,6 +10,7 @@ const MessageProvider = ({ value = [], ...props }) => {
 		allReceivedMessages: [],
 		allSentMessages: [],
 		displayedMessagePreviews: [],
+		messageOpen: false,
 		openedMessage: {
 			messageSenderId: '',
 			messageSenderName: '',

@@ -10,12 +10,13 @@ import {
 export const reducer = (state, action) => {
 	switch (action.type) {
 		case SET_RECEIVED_MESSAGES:
-			if(!action.allReceivedMessages) {
-				console.log('no received messages coming in..')
+			if (!action.allReceivedMessages) {
 			}
-			return { ...state.items, allReceivedMessages: [...action.allReceivedMessages] };
+			return {
+				...state.items,
+				allReceivedMessages: [...action.allReceivedMessages],
+			};
 		case SET_SENT_MESSAGES:
-			
 			return { ...state.items, allSentMessages: [...action.allSentMessages] };
 		case SET_DISPLAYED_MESSAGES:
 			return {
@@ -23,10 +24,9 @@ export const reducer = (state, action) => {
 				displayedMessagePreviews: [...action.displayedMessagePreviews],
 			};
 		case SET_OPENED_MESSAGE:
-			return { ...state, openedMessage: action.openedMessage };
+			return { ...state, openedMessage: action.openedMessage, messageOpen: true };
 		case SET_USER_ID:
 			return { ...state, userId: action.userId };
-
 		default:
 			return state;
 	}

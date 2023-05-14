@@ -15,7 +15,6 @@ function MessagePreview(message) {
         openedMessage: message
       })
     } else if (!message) {
-      console.log('mssage is empty...');
       dispatch({
         type: SET_OPENED_MESSAGE,
         openedMessage: state.openedMessage
