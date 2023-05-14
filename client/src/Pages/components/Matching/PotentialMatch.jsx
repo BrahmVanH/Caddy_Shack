@@ -27,32 +27,27 @@ function PotentialMatch() {
   }
 
 
-function PotentialMatch() {
-  return (
-
-    
-<div className="matchCards">
-{data.possibleMatches.map((match) => (
-  <div key={match.username} className="myCard">
-    <div className="card" style={{width:"25rem"}}>
-      <img src={gopher} className="card-img-top" alt="placeholder" />
-      <div className="card-body">
-        <h5 className="card-title">{match.username}</h5>
-        <p className="card-text">{match.bio}</p>
-        <Link to="/">
-              <span href="/" className="btn btn-success myBtn">
-                Yes
-              </span>
-        </Link>
-            <span href="/" className="btn btn-danger myBtn">
-
+return (
+    <div>
+      <div className="myCard">
+        <div className="card" style={{ width: "18rem" }}>
+          <img src={gopher} className="card-img-top" alt="..." />
+          <div className="card-body">
+            <h5 className="card-title">User Name</h5>
+            <p className="card-text">User's Bio</p>
+            <Link to="/">
+              <a href="/" className="btn btn-success myBtn">
+                YES
+              </a>
+            </Link>
+            <a href="/" className="btn btn-danger myBtn">
               No
-            </span>
+            </a>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default PotentialMatch;

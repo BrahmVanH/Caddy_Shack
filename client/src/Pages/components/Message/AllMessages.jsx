@@ -8,6 +8,7 @@ import { GET_RECEIVED_MESSAGES, GET_SENT_MESSAGES } from '../../../utils/queries
 import Auth from '../../../utils/auth';
 
 import "./assets/css/message.css";
+// comment to push
 
 function Message() {
 
