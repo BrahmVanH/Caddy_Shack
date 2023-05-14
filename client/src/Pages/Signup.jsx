@@ -61,7 +61,7 @@ export default function Signup() {
 			});
 			// Stores user token in localStorage 
 			Auth.login(data.createUser.token);
-			window.location.assign('/profile')
+			
 
 		} catch (err) {
 			console.error(err);
@@ -258,6 +258,7 @@ export default function Signup() {
 						</div>
 					</Form.Group>
 				<div className='d-flex justify-content-center form-group m-2 py-5'>
+						<Link to='/profile'>
 						<Button
 							disabled={
 								!(
@@ -276,6 +277,7 @@ export default function Signup() {
 							variant='success'>
 							Submit
 						</Button>
+						</Link>
 					</div>
 				</Form>
 			</div>
