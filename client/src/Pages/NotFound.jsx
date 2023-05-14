@@ -1,5 +1,5 @@
-import "./assets/css/notFound.css";
-import pageNotFound from "./assets/img/pagenotfound.jpg";
+import '../assets/css/notFound.css';
+import pageNotFound from '../assets/img/pagenotfound.jpg';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function NotFound() {

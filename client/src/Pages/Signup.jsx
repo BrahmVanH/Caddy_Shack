@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Form, Button, Alert, Dropdown } from 'react-bootstrap';
 
-import './assets/css/signup.css';
+import '../assets/css/signup.css';
 
 
 import { useMutation } from '@apollo/client';

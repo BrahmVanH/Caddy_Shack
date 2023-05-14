@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Card, Form, Button, Alert } from 'react-bootstrap';
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/css/login.css";
+import "../assets/css/login.css";
 
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';

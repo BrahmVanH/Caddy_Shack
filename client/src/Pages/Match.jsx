@@ -6,8 +6,8 @@ import { ALL_MATCHES } from '../utils/queries';
 
 import Auth from '../utils/auth';
 
-import gopher from "./assets/img/gopher.png";
-import "./assets/css/match.css";
+import gopher from '../assets/img/gopher.png';
+import '../assets/css/match.css'
 
 function Match() {
 
