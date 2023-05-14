@@ -69,4 +69,8 @@ db.once('open', async () => {
 		console.log('something went wrong while creatingSeedMessages');
 		console.error(err);
 	}
+
+	setTimeout(() => {
+		process.exit(0);
+	}, '8000');
 });
