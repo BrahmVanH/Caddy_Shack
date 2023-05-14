@@ -272,6 +272,7 @@ export default function Signup() {
 									userFormData.bio
 								)
 							}
+							onClick={handleFormSubmit}
 							className='btn btn-light'
 							type='submit'
 							variant='success'>
