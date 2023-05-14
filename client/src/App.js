@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink} from '@apollo/client';
 import Home from './Pages/Home';
 import Match from './Pages/Match';
@@ -40,27 +40,49 @@ const client = new ApolloClient({
 
 function App() {
   return (
-		<ApolloProvider client={client}>
-			<Router>
-				<Navbar />
-				<Switch>
-					<div>
-						<Routes>
-							<Route path='/' element={<Home />} />
-							<Route path='/match' element={<Match />} />
-							<Route path='/message' element={<Message />} />
-							<Route path='/profile' element={<Profile />} />
-							<Route path='/login' element={<Login />} />
-							<Route path='/Signup' element={<Signup />} />
-							<Route path='/matching' element={<Matching />} />
-							<Route path='*' element={<NotFound />} />
-						</Routes>
-					</div>
-					<Footer />
-				</Switch>
-			</Router>
-		</ApolloProvider>
-	);
+    <ApolloProvider client={client}>
+      <Router>
+          <Navbar />
+        <div>
+          <Routes>
+            <Route 
+              path="/" 
+              element={<Home />}
+            />
+            <Route 
+              path="/match" 
+              element={<Match />}
+            />
+            <Route 
+              path="/message" 
+              element={<Message />}
+            />
+            <Route 
+              path="/profile" 
+              element={<Profile />}
+            />
+            <Route 
+              path="/login" 
+              element={<Login />}
+            />
+             <Route 
+              path="/Signup" 
+              element={<Signup />}
+            />
+            <Route 
+              path="/matching" 
+              element={<Matching />}
+            />
+            <Route 
+              path="*"
+              element={<NotFound />}
+            />
+          </Routes>
+        </div>
+        <Footer />
+      </Router>
+    </ApolloProvider>
+  );
 }
 
 export default App;
