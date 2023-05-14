@@ -69,5 +69,4 @@ db.once('open', async () => {
 		console.log('something went wrong while creatingSeedMessages');
 		console.error(err);
 	}
-
 });

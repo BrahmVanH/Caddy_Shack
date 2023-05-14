@@ -43,7 +43,9 @@ export default function Login() {
 			event.stopPropagation();
 		}
 
-		
+		if (!loginFormData) {
+			throw new Error('You must fill out all fields!');
+		}
 
 		try {
 			const { data } = await loginUser({
@@ -54,7 +56,7 @@ export default function Login() {
 			// Logs user in and stores token
 			Auth.login(data.loginUser.token);
 		
-			window.location.assign('/profile');
+			// window.location.assign('/profile');
 
 		} catch (err) {
 			console.error(err);
@@ -125,14 +127,15 @@ export default function Login() {
 					</Form.Group>
 					
           <div className='mb-3 d-flex justify-content-around'>
-					
+					<Link to='/profile'>
               <Button
-								
+									onClick={handleFormSubmit}
 									className='btn d-block login-buttons'
 									type='submit'
 									>
 										Login
 							</Button>
+							</Link>
 				
               <Link className='btn d-block login-buttons' to='/signup' >
                 Sign Up
