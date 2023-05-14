@@ -2,6 +2,8 @@ import gopher from "../../assets/img/gopher.png";
 import "../Matching/potential.css";
 import { Link } from "react-router-dom";
 import Auth from "../../../utils/auth"
+import { gql, useQuery } from '@apollo/client';
+
 
 
 const GET_INTEREST = gql`
