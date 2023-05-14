@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/home.css";
 import { Link } from "react-router-dom";
+import Auth from '../utils/auth';
 
 function Home() {
   return (
@@ -13,9 +14,15 @@ function Home() {
             for golf!
           </p>
           <div className="text-center">
+            {Auth.loggedIn() ? (
+              <Link to='/matching' className="btn btn-primary">
+              Find a Partner
+              </Link>
+            ) : (
             <Link to="/login" className="btn btn-primary">
               Find a Partner
             </Link>
+            )}
           </div>
         </div>
       </div>
