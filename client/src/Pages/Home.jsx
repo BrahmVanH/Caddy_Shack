@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/css/home.css";
+import "../assets/css/home.css";
 import { Link } from "react-router-dom";
 import Auth from '../utils/auth';
 

@@ -1,12 +1,12 @@
-import React, { createContext, useReducer } from 'react';
-import Auth from '../utils/auth';
+import React, { createContext, useContext } from 'react';
+import { useMessageReducer } from './reducers';
 
 const MessageContext = createContext();
 const { Provider } = MessageContext;
 
-const messageProvider = ({ value = [], ...props }) => {
+const MessageProvider = ({ value = [], ...props }) => {
 	const [state, dispatch] = useMessageReducer({
-		userId: Auth.getProfile().data._id,
+		userId: '',
 		allReceivedMessages: [],
 		allSentMessages: [],
 		displayedMessagePreviews: [],
@@ -26,4 +26,4 @@ const useMessageContext = () => {
 	return useContext(MessageContext);
 };
 
-export { messageProvider, useMessageContext };
+export { MessageProvider, useMessageContext };

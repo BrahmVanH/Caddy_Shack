@@ -1,6 +1,6 @@
 import { useQuery, gql } from "@apollo/client";
-import gopher from "./assets/img/gopher.png";
-import "./assets/css/profile.css";
+import gopher from '../assets/img/gopher.png';
+import '../assets/css/profile.css';
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth"
 
