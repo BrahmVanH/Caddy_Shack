@@ -178,7 +178,10 @@ function Message() {
 										messageSenderId={message.messageSenderId}
 										messageRecipientId={message.messageRecipientId}
 										messageRecipientName={message.messageRecipientName}
-										messageBody={abbreviateMessageBody(message.messageBody)}
+										messageBody={message.messageBody}
+										abbreviatedMessageBody={abbreviateMessageBody(
+											message.messageBody
+										)}
 										createdAt={message.createdAt}
 									/>
 								))}
@@ -189,55 +192,54 @@ function Message() {
 					</div>
 				</div>
 				<div className='col-7 opened-message'>
-					<div class='opened-nav' role='group'>
-						</div>
+					<div class='opened-nav' role='group'></div>
 					<div>
 						{state.messageOpen ? (
 							<div className='viewed-message p-3 m-2'>
 								<div className='name-container m-auto'>
 									<h4>{openedMessage.messageSenderName}</h4>
 								</div>
-							<div className='body-container'>
-								<div className='message-body row'>
-									<p style={{ fontHeight: '2rem' }}>
-										{openedMessage.messageBody}
-									</p>
-								</div>
-								<div className='row d-flex flex-end date-stamp'>
-									<p>{openedMessage.createdAt}</p>
-								</div>
+								<div className='body-container'>
+									<div className='message-body row'>
+										<p style={{ fontHeight: '2rem' }}>
+											{openedMessage.messageBody}
+										</p>
+									</div>
+									<div className='row d-flex flex-end date-stamp'>
+										<p>{openedMessage.createdAt}</p>
+									</div>
 								</div>
 								<div className='response-container'>
-								<Form className='form responseField py-2'>
-									<Alert
-										dismissible
-										onClose={() => setShowAlert(false)}
-										show={showAlert}
-										variant='danger'>
-										You must enter a message before sending!
-									</Alert>
-									<Form.Group className='m-2'>
-										<Form.Control
-											type='textarea'
-											placeholder='message'
-											name='messageBody'
-											onChange={handleInputChange}
-											value={responseMessageBody.messageBody}
-										/>
+									<Form className='form responseField py-2'>
+										<Alert
+											dismissible
+											onClose={() => setShowAlert(false)}
+											show={showAlert}
+											variant='danger'>
+											You must enter a message before sending!
+										</Alert>
+										<Form.Group className='m-2'>
+											<Form.Control
+												type='textarea'
+												placeholder='message'
+												name='messageBody'
+												onChange={handleInputChange}
+												value={responseMessageBody.messageBody}
+											/>
 
-										<Form.Control.Feedback type='invalid'>
-											Message is required!
-										</Form.Control.Feedback>
-									</Form.Group>
-									<div className='button-container d-flex justify-content-end'>
-									<Button
-										onClick={handleFormSubmit}
-										className='btn d-block login-buttons'
-										type='submit'>
-										Reply
-									</Button>
-									</div>
-								</Form>
+											<Form.Control.Feedback type='invalid'>
+												Message is required!
+											</Form.Control.Feedback>
+										</Form.Group>
+										<div className='button-container d-flex justify-content-end'>
+											<Button
+												onClick={handleFormSubmit}
+												className='btn d-block login-buttons'
+												type='submit'>
+												Reply
+											</Button>
+										</div>
+									</Form>
 								</div>
 							</div>
 						) : (

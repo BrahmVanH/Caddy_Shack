@@ -121,7 +121,9 @@ export const GET_SENT_MESSAGES = gql`
 		allSentMessages(userId: $userId) {
 			_id
 			messageSenderId
+			messageSenderName
 			messageRecipientId
+			messageRecipientName
 			messageBody
 			createdAt
 		}
