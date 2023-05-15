@@ -13,7 +13,7 @@ function MessagePreview(message) {
     if(message) {
       dispatch({
         type: SET_OPENED_MESSAGE,
-        openedMessage: message
+        openedMessage: { ...message, messageBody: message.messageBody}
       })
     } else if (!message) {
       dispatch({
@@ -35,7 +35,7 @@ function MessagePreview(message) {
         </div>
       </div>
       <div className="bio d-flex">
-        <p id='messageBody'>{message.messageBody}</p>
+        <p id='messageBody'>{message.abbreviatedMessageBody}</p>
       </div>
     </button>
   );
