@@ -1,4 +1,4 @@
-import gopher from "../../assets/img/gopher.png";
+
 import "../Matching/potential.css";
 import { Link } from "react-router-dom";
 // import Auth from "../../utils/auth";
