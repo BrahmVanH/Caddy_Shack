@@ -8,6 +8,7 @@ function MessagePreview(message) {
   const [state, dispatch] = useMessageContext();
 
   const handleMessageOpen = async (event) => {
+    console.log(message.messageBody);
     event.preventDefault();
     if(message) {
       dispatch({

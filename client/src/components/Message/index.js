@@ -20,10 +20,10 @@ import '../../assets/css/message.css';
 
 function Message() {
 	const [validated] = useState(false);
-	
+
 	const [showAlert, setShowAlert] = useState(false);
-	
-	const [sendMessage] = useMutation(SEND_MESSAGE)
+
+	const [sendMessage] = useMutation(SEND_MESSAGE);
 	const [state, dispatch] = useMessageContext();
 	const {
 		userId,
@@ -32,12 +32,15 @@ function Message() {
 		displayedMessagePreviews,
 		openedMessage,
 	} = state;
-	
+
 	const receivedMessages = useQuery(GET_RECEIVED_MESSAGES, {
 		variables: { userId: userId },
 	});
 
-	
+	const abbreviateMessageBody = (body) => {
+		const bodyString = body.toString();
+		return bodyString.slice(0, 25);
+	};
 
 	useEffect(() => {
 		if (Auth.getProfile().data._id) {
@@ -51,8 +54,6 @@ function Message() {
 	const sentMessages = useQuery(GET_SENT_MESSAGES, {
 		variables: { userId: userId },
 	});
-
-
 
 	useEffect(() => {
 		if (receivedMessages.data) {
@@ -68,8 +69,6 @@ function Message() {
 			});
 		}
 	}, [receivedMessages.data, receivedMessages.loading, allReceivedMessages]);
-
-
 
 	const renderReceivedMessages = async (event) => {
 		event.preventDefault();
@@ -105,10 +104,8 @@ function Message() {
 
 	const [responseMessageBody, setResponseMessageBody] = useState({
 		messageBody: '',
+	});
 
-
-	})
-	
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
 		setResponseMessageBody({ ...responseMessageBody, [name]: value });
@@ -130,23 +127,21 @@ function Message() {
 			const { data } = await sendMessage({
 				variables: {
 					messageSenderId: state.openedMessage.messageRecipientId,
-					messageSenderName: state.openedMessage.messageRecipientName, 
-					messageRecipientId:  state.openedMessage.messageSenderId,
+					messageSenderName: state.openedMessage.messageRecipientName,
+					messageRecipientId: state.openedMessage.messageSenderId,
 					messageRecipientName: state.openedMessage.messageSenderName,
 					messageBody: responseMessageBody.messageBody,
-
-				}
-			})
+				},
+			});
 		} catch (err) {
 			console.error(err);
 			setShowAlert(true);
 		}
 
 		setResponseMessageBody({
-			messageBody: ''
+			messageBody: '',
 		});
-
-	}
+	};
 
 	useEffect(() => {
 		setResponseMessageBody({
@@ -183,7 +178,7 @@ function Message() {
 										messageSenderId={message.messageSenderId}
 										messageRecipientId={message.messageRecipientId}
 										messageRecipientName={message.messageRecipientName}
-										messageBody={message.messageBody}
+										messageBody={abbreviateMessageBody(message.messageBody)}
 										createdAt={message.createdAt}
 									/>
 								))}
@@ -191,26 +186,29 @@ function Message() {
 						) : (
 							<div>you must be signed in to view your messages!</div>
 						)}
-						<div className='inbox-footer'></div>
 					</div>
 				</div>
 				<div className='col-7 opened-message'>
+					<div class='opened-nav' role='group'>
+						</div>
 					<div>
-						{}
-						<div className='viewed-message p-3 m-2'>
-							<div className='name-container'>
-								<h4>{openedMessage.messageSenderName}</h4>
-							</div>
-							<div className='message-body'>
-								<p style={{ fontHeight: '2rem' }}>
-									{openedMessage.messageBody}
-								</p>
-							</div>
-							<div className='col-2 date-stamp'>
-								<p>{openedMessage.createdAt}</p>
-							</div>
-							{state.messageOpen ? (
-								<Form className='form responseField'>
+						{state.messageOpen ? (
+							<div className='viewed-message p-3 m-2'>
+								<div className='name-container m-auto'>
+									<h4>{openedMessage.messageSenderName}</h4>
+								</div>
+							<div className='body-container'>
+								<div className='message-body row'>
+									<p style={{ fontHeight: '2rem' }}>
+										{openedMessage.messageBody}
+									</p>
+								</div>
+								<div className='row d-flex flex-end date-stamp'>
+									<p>{openedMessage.createdAt}</p>
+								</div>
+								</div>
+								<div className='response-container'>
+								<Form className='form responseField py-2'>
 									<Alert
 										dismissible
 										onClose={() => setShowAlert(false)}
@@ -218,7 +216,7 @@ function Message() {
 										variant='danger'>
 										You must enter a message before sending!
 									</Alert>
-									<Form.Group className='m-5'>
+									<Form.Group className='m-2'>
 										<Form.Control
 											type='textarea'
 											placeholder='message'
@@ -231,17 +229,22 @@ function Message() {
 											Message is required!
 										</Form.Control.Feedback>
 									</Form.Group>
+									<div className='button-container d-flex justify-content-end'>
 									<Button
 										onClick={handleFormSubmit}
 										className='btn d-block login-buttons'
 										type='submit'>
-										Send Message
+										Reply
 									</Button>
+									</div>
 								</Form>
-							) : (
-								<div></div>
-							)}
-						</div>
+								</div>
+							</div>
+						) : (
+							<div className='no-opened-message p-5 m-auto d-flex justify-content-center'>
+								<h2>Select a message to view</h2>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
